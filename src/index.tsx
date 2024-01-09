@@ -8,6 +8,12 @@ import "bootstrap/dist/css/bootstrap.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
 // root.render();
 
 // If you want to start measuring performance in your app, pass a function
