@@ -4,18 +4,18 @@ import Card from 'react-bootstrap/Card';
 
 function LandingPageApp () {
   return (  
-          <Container>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="holder.js/100px180" />
-      <             Card.Body>
-                    <Card.Title>Maging nigger</Card.Title>
-                    <Card.Text>
-                        handa kana bang maging nigga???
-                    </Card.Text>
-                <Button variant="primary">pindutin ito</Button>
-                </Card.Body>
-                    </Card>
-          </Container>
+    <div className="App">
+    <header className="App-header">
+      <h1>Welcome to Our Website</h1>
+      <p>
+        Explore amazing features and benefits!
+      </p>
+      <div className="d-flex justify-content-center">
+        <a href="#signup" className="btn btn-primary mx-2">Sign Up</a>
+        <a href="#login" className="btn btn-outline-primary mx-2">Login</a>
+      </div>
+    </header>
+  </div>
   );
 }
 export default LandingPageApp

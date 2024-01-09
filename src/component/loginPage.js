@@ -1,28 +1,26 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React from 'react';
+import {Form,Button} from 'react-bootstrap';
+
 
 function LoginPage() {
   return (
-    <Form>
+    <>
+    <Form style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ced4da', borderRadius: '5px', backgroundColor: '#fff', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
+        <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
+        <Form.Control type="email" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
+        <Form.Control type="password" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+
+      <Button style={{ width: '100%', marginTop: '15px' }}variant="primary" type="submit">
+        Login
+      </Button>  
     </Form>
+    </>
   );
 }
 
