@@ -3,21 +3,21 @@ import { Route, Routes } from "react-router-dom"
 import { BrowserRouter as Router } from "react-router-dom"
 import { Container, Navbar } from "react-bootstrap";
 import AppNavbar from "./component/navbarApp";
-
-
-// import { Route, Routes } from "react-router-dom"
-// import { BrowserRouter as Router } from "react-router-dom"
-// import { Container } from "react-bootstrap";
-// import { useState, useEffect } from "react"
-// import { UserProvider } from "./UserContext"
+import LandingPageApp from "./component/landingPage";
+import LoginPage from "./component/loginPage";
 
 
 
-export default function App() {
+function App() {
     return(
-        <Router>
-            <AppNavbar/>
-        </Router>
-        
+    <Router>
+        <AppNavbar/>
+          <Container>
+            {/* <LandingPageApp/> */}
+            <LoginPage/>
+          </Container>
+    </Router>      
     )
 }
+
+export default App;
