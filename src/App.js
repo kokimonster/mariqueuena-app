@@ -6,18 +6,18 @@ import AppNavbar from "./component/navbarApp";
 import LandingPageApp from "./component/landingPage";
 import LoginPage from "./component/loginPage";
 import Homepage from "./component/homePage";
-import Registrationpage from "./component/registrationPage";
+import RegistrationPage from "./component/registrationPage";
 
 
 function App() {
     return(
-    <Router>
-          <Routes>
-            <Route path="/" Component={Homepage}></Route>
-            <Route path="/loginPage" Component={LoginPage}></Route>
-            <Route path="/registrationPage" Component={Registrationpage}></Route>
-          </Routes>
-    </Router>      
+      <Router>
+            <Routes>
+              <Route path="/" Component={Homepage}></Route>
+              <Route path="/loginPage" Component={LoginPage}></Route>
+              <Route path="/registrationPage" Component={RegistrationPage}></Route>
+            </Routes>
+      </Router>     
     )
 }
 
