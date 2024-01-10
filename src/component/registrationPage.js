@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 function Registrationpage() {
   return (
     <div className='form-container'>
-      <h2>Sign Up</h2>
     <Form style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ced4da', borderRadius: '5px', backgroundColor: '#fff', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-      
+      <div className='d-flex justify-content-center'>
+      <h2>Sign Up Form</h2>
+      </div>
       <Form.Group className="mb-3" controlId="formBasicText">
         <Form.Label style={{ fontWeight: 'bold' }}>First Name</Form.Label>
         <Form.Control type="text" />
