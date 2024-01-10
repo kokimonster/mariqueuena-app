@@ -2,18 +2,15 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
+const containerStyle = {
+  background: 'linear-gradient(31deg, rgba(251,229,15,1) 0%, rgba(156,135,76,1) 12%, rgba(121,101,98,1) 17%, rgba(35,16,153,1) 50%, rgba(113,93,103,1) 86%, rgba(182,161,59,1) 97%, rgba(251,229,15,1) 100%)',
+  backgroundSize: 'cover',  // Set background size to cover the entire container
+  backgroundPosition: 'center',  // Center the background image
+  backgroundRepeat: 'no-repeat',  // Prevent background image from repeating
+};
 function Homepage() {
     return(
-    // <Router>
-    //     <AppNavbar/>
-    //       <Container>
-    //         {/* <LandingPageApp/> */}
-    //         <LoginPage/>
-    //         {/* <DropDown/> */}
-    //       </Container>
-    // </Router>      
-    <div className="App">
+    <div className="App" style={containerStyle}>
       <header className="App-header">
         <h1>MARIQUEUENA </h1>
         <p>COMELEC MARIKINA </p>
