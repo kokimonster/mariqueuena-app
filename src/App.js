@@ -1,6 +1,6 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom"
-import { BrowserRouter as Router } from "react-router-dom"
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
 import { Container, Navbar } from "react-bootstrap";
 import AppNavbar from "./component/navbarApp";
 import LandingPageApp from "./component/landingPage";
@@ -12,15 +12,11 @@ import Registrationpage from "./component/registrationPage";
 function App() {
     return(
     <Router>
-        {/* <AppNavbar/>
-          <Container>
-            <LandingPageApp/>
-            <DropDown/>
-          </Container> */}
-           {/* <Homepage/> */}
-          <Registrationpage/>
-          
-          <LoginPage/>
+          <Routes>
+            <Route path="/" Component={Homepage}></Route>
+            <Route path="/loginPage" Component={LoginPage}></Route>
+            <Route path="/registrationPage" Component={Registrationpage}></Route>
+          </Routes>
     </Router>      
     )
 }

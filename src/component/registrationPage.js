@@ -1,10 +1,12 @@
 import React from 'react';
 import {Form,Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 function Registrationpage() {
   return (
-    <>
+    <div className='form-container'>
+      <h2>Sign Up</h2>
     <Form style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ced4da', borderRadius: '5px', backgroundColor: '#fff', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
       
       <Form.Group className="mb-3" controlId="formBasicText">
@@ -35,8 +37,11 @@ function Registrationpage() {
       <Button style={{ width: '100%', marginTop: '15px' }}variant="primary" type="submit"> 
         Sign up
       </Button>  
+      <Link to="/">
+        <button>Back to Home</button>
+      </Link>
     </Form>
-    </>
+    </div>
   );
 }
 

@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 
 
 function Homepage() {
@@ -17,8 +19,12 @@ function Homepage() {
           COMELEC MARIKINA
         </p>
         <div className="d-flex justify-content-center">
-          <a href="#signup" id="signup" className="btn btn-outline-light mx-2">Sign Up</a>
-          <a href="#login" id="login" className="btn btn-light mx-2">Login</a>
+          <Link to="/registrationPage">
+          <button id="signup" className="btn btn-outline-light mx-2">Sign Up</button>
+          </Link>
+          <Link to="/loginPage">
+          <button id="login" className="btn btn-light mx-2">Login</button>
+          </Link>
         </div>
       </header>
     </div>
