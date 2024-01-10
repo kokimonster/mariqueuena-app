@@ -16,6 +16,7 @@ function App() {
               <Route path="/" Component={Homepage}></Route>
               <Route path="/loginPage" Component={LoginPage}></Route>
               <Route path="/registrationPage" Component={RegistrationPage}></Route>
+              <Route path="/landingPage" Component={LandingPageApp}></Route>
             </Routes>
       </Router>     
     )
