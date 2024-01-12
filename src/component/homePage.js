@@ -8,6 +8,7 @@ const containerStyle = {
   backgroundPosition: 'center',  // Center the background image
   backgroundRepeat: 'no-repeat',  // Prevent background image from repeating
 };
+
 function Homepage() {
     return(
     <div className="App" style={containerStyle}>
