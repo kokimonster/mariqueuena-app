@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoginPage from "./loginPage";
 import RegistrationPage from "./registrationPage";
@@ -13,10 +13,29 @@ function Homepage() {
   const handleCloseRegModal = () => setShowRegModal(false);
   const handleShowRegModal = () => setShowRegModal(true);
 
+  const imgStyle = {
+    width: '50px',
+    height: '50px',
+    marginRight: '40px',
+    marginLeft: '40px',
+  };
+
   return(
     <div className= 'containerStyle'>
       <header className="App-header">
           <Container>
+          <Row>
+            <Col xs={12} md={6}>
+              <Row className="align-items-center">
+                <Col>
+                  <Image variant="top" src={require('../img/mrkna.png')} alt="Marikina Logo" style={imgStyle}  />
+                </Col>
+                <Col>
+                  <Image variant="top" src={require('../img/comelec.png')} alt="Comelec Logo" style={imgStyle}  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
             <Row>
               <h1 as={Col} xs={12} className="text-center">MARIQUEUENA </h1>
             </Row>
