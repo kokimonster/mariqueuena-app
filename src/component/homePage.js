@@ -14,24 +14,24 @@ function Homepage() {
   const handleShowRegModal = () => setShowRegModal(true);
 
   const imgStyle = {
-    width: '50px',
-    height: '50px',
-    marginRight: '40px',
-    marginLeft: '40px',
+    width: '40%',
+    height: '40%',
+    // marginRight: '40px',
+    // marginLeft: '40px',
   };
 
   return(
     <div className= 'containerStyle'>
       <header className="App-header">
-          <Container>
+          <Container className="fluid align-items-center justify-content-center">
           <Row>
             <Col xs={12} md={6}>
-              <Row className="align-items-center">
+              <Row>
                 <Col>
-                  <Image variant="top" src={require('../img/mrkna.png')} alt="Marikina Logo" style={imgStyle}  />
+                  <Image class="img-fluid" variant="top" src={require('../img/mrkna.png')} alt="Marikina Logo" style={imgStyle}  />
                 </Col>
                 <Col>
-                  <Image variant="top" src={require('../img/comelec.png')} alt="Comelec Logo" style={imgStyle}  />
+                  <Image class="img-fluid" variant="top" src={require('../img/comelec.png')} alt="Comelec Logo" style={imgStyle}  />
                 </Col>
               </Row>
             </Col>
