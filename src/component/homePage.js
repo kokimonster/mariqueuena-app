@@ -14,26 +14,24 @@ function Homepage() {
   const handleShowRegModal = () => setShowRegModal(true);
 
   const imgStyle = {
-    width: '40%',
-    height: '40%',
+    width: '20%',
+    height: '20%',
     // marginRight: '40px',
     // marginLeft: '40px',
   };
 
   return(
     <div className= 'containerStyle'>
-      <header className="App-header">
-          <Container className="fluid align-items-center justify-content-center">
+      
+      <header className="container-fluid">
+          <Container className="text-center align-items-center">
           <Row>
-            <Col xs={12} md={6}>
-              <Row>
-                <Col>
-                  <Image class="img-fluid" variant="top" src={require('../img/mrkna.png')} alt="Marikina Logo" style={imgStyle}  />
-                </Col>
-                <Col>
-                  <Image class="img-fluid" variant="top" src={require('../img/comelec.png')} alt="Comelec Logo" style={imgStyle}  />
-                </Col>
-              </Row>
+            <Col xs={12} md={12} className="center-block pb-3">
+                <div>
+                  <img class="me-5" variant="top" src={require('../img/mrkna.png')} alt="Marikina Logo" style={imgStyle}  /> 
+                  <img class="ms-5" variant="top" src={require('../img/comelec.png')} alt="Comelec Logo" style={imgStyle}  />
+                </div>
+              
             </Col>
           </Row>
             <Row>
@@ -42,14 +40,12 @@ function Homepage() {
             <Row>
               <p as={Col} xs= {12} className="text-center pb-3"> COMELEC MARIKINA </p>
             </Row>
-            <Row>
+            <Row className="justify-content-center">
               <Col>
-                <Button style={{ width: '125px', marginRight: '15px'}} variant="outline-light" size="lg" onClick={handleShowRegModal}>Sign Up</Button>
+                <Button style={{  }} className="m-3" variant="outline-light" size="lg" onClick={handleShowRegModal}>Sign Up</Button>
                 <RegistrationPage show={showRegModal} handleClose={handleCloseRegModal}/>
-              </Col>
-
-              <Col>
-                <Button style={{ width: '125px', marginLeft: '15px' }} variant="light" size="lg" onClick={handleShowLoginModal} >Login</Button>
+              
+                <Button style={{  }} className="m-3" variant="light" size="lg" onClick={handleShowLoginModal} >Login</Button>
                 <LoginPage show={showLoginModal} handleClose={handleCloseLoginModal}/>
               </Col>
             </Row>
