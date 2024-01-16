@@ -11,12 +11,12 @@ import RegistrationPage from "./component/registrationPage";
 function App() {
     return(
     <Router>
-          <Routes>
-            <Route path="/" Component={Homepage}></Route>
-            <Route path="/loginPage" Component={LoginPage}></Route>
-            <Route path="/registrationPage" Component={RegistrationPage}></Route>
-            <Route path="/landingPage" Component={LandingPageApp}></Route>
-          </Routes>
+      <Routes>
+        <Route path="/" Component={Homepage}></Route>
+        <Route path="/loginPage" Component={LoginPage}></Route>
+        <Route path="/registrationPage" Component={RegistrationPage}></Route>
+        <Route path="/landingPage" Component={LandingPageApp}></Route>
+      </Routes>
     </Router>      
     )
 }

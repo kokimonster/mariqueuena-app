@@ -98,78 +98,86 @@ function LandingPageApp () {
   };
 
   return (  
-    <div className="App" style={containerStyle}>
-    <Navbar className=" justify-content-between"  style={{backgroundColor: "#231099"}}>
-        <Container>
-          <Navbar.Brand href="/">
-            <img
-              src={require('../img/mrkna.png')}
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-              alt="Marikina Logo"
-            />
-          </Navbar.Brand>
-          <div className='d-inline-block text-center text-light'> 
-          <h1 className='text-xl'>MARIQUEUENA</h1>
-          <h6>COMELEC MARIKINA</h6>
-          </div>
-          <Navbar.Brand href="/">
-            <img
-              src={require('../img/comelec.png')}
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-              alt="Comelec Logo"
-            />
-          </Navbar.Brand>
-        </Container>
+    <div className="landingPageStyle">
+      <Navbar className=" justify-content-between"  style={{backgroundColor: "#231099"}}>
+          <Container>
+            <Navbar.Brand href="/">
+              <img 
+                src={require('../img/mrkna.png')}
+                width="50"
+                height="50"
+                className="d-inline-block align-top"
+                alt="Marikina Logo"
+              />
+            </Navbar.Brand>
+            <div className='d-inline-block text-center text-light'> 
+            <h1 className='text-xl'>MARIQUEUENA</h1>
+            <h6>COMELEC MARIKINA</h6>
+            </div>
+            <Navbar.Brand href="/">
+              <img
+                src={require('../img/comelec.png')}
+                width="50"
+                height="50"
+                className="d-inline-block align-top"
+                alt="Comelec Logo"
+              />
+            </Navbar.Brand>
+          </Container>
       </Navbar>
       
-      <Container className="mt-4 d-flex justify-content-center align-items-center">
-        <Row style={{ height: '100%' }}>
-          <Col md={12} className="mb-4 d-flex flex-column justify-content-between">
-            <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000' }}>
-            <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-            <div>
-              <h1>NOW SERVING:</h1>
-            </div>
-                {servedPerson && (
-                  <div className="mt-3 "> {servedPerson}
-                  </div>
-                )}
-              </Card.Body>
-            </Card>
-            
-            <Card className="mt-4 flex-grow-1 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.57)', color: '#000000', height: '100%' }}>
-              <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-              
-                {/* display queue */}
-                {/* {servedPerson ? servedPerson.number : 'No Queue'} */}
+      <div className="gradient-bg-landing">
+        <div>
+          <Container>
+            <Row style={{ height: '100%' }}>
+              <Col md={12} className="mb-4 d-flex flex-column justify-content-between">
+                <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000' }}>
+                  <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
+                  <div>
+                    <h1>NOW SERVING:</h1>
+                      </div>
+                        {servedPerson && (
+                        <div className="mt-3 "> {servedPerson}
+                      </div>
+                    )}
+                  </Card.Body>
+                </Card>
                 
-              <Queue people={peopleInLine} joinQueue={joinWaitingLine} serveNext={serveNextPerson} />
-              </Card.Body>
-            </Card>
+                <Card className="mt-4 flex-grow-1 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.57)', color: '#000000', height: '100%' }}>
+                  <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
+                      {/* display queue */}
+                      {/* {servedPerson ? servedPerson.number : 'No Queue'} */}
+                  <Queue people={peopleInLine} joinQueue={joinWaitingLine} serveNext={serveNextPerson} />
+                  </Card.Body>
+                </Card>
 
-            <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000',  }}>
-            {/* position: 'absolute', bottom: 0, width: '68%' */}
-              <Card.Body className='text-center'>
-                <Card.Title>FROM THIS POINT</Card.Title>
-                <Card.Text>
-                  ESTIMATED WAITING TIME: {calculateEstimatedTime()}
-                  {/* ESTIMATED WAITING TIME: {calculateEstimatedTime() !== null ? '${calculateEstimatedTime()} minutes' : ''} */}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000',  }}>
+                  {/* position: 'absolute', bottom: 0, width: '68%' */}
+                    <Card.Body className='text-center'>
+                      <Card.Title>FROM THIS POINT</Card.Title>
+                        <Card.Text>
+                          ESTIMATED WAITING TIME: {calculateEstimatedTime()}
+                          {/* ESTIMATED WAITING TIME: {calculateEstimatedTime() !== null ? '${calculateEstimatedTime()} minutes' : ''} */}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
 
-      <Container className='mt-4 d-flex justify-content-center alignt-items-center'>
+          <Container className='mt-4 d-flex justify-content-center alignt-items-center'>
+      
+              {/* burahin mo nalang ako kiko */}
+              <Link to = "/">
+                <Button style={{ width:'150px' }}variant="primary" type="submit"> 
+                      Test
+                </Button>
+              </Link>
 
-      </Container>
-
+          </Container>
+        </div>
       </div>
+    </div>
   );
 }
 export default LandingPageApp;

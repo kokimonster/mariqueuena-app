@@ -28,9 +28,11 @@ function LoginPage({show, handleClose}) {
                   
               <Row>
                 <Col className='text-center' xs={12}>
-                  <Button style={{ width:'150px'}}variant="primary" type="submit"> 
-                    Login
-                  </Button>
+                  <Link to="/landingPage">
+                    <Button style={{ width:'150px'}}variant="primary" type="submit"> 
+                      Login
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
               
