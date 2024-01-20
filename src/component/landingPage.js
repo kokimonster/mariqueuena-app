@@ -38,9 +38,9 @@ const Queue = ({ people, joinQueue, serveNext }) => {
         {firstPerson ? (
           <>
             <h1>YOUR QUEUE NUMBER IS:</h1>
-            <ul>
+            <ul className='text-center'>
               {firstPerson && (
-                <div className='mt-3'>{firstPerson}</div>
+                <div className='mt-3 me-4'>{firstPerson}</div>
               )}
             </ul>
           </>
@@ -64,8 +64,21 @@ function LandingPageApp () {
   const [servedPerson, setServedPerson] = useState(null);
   const [lastQueue, setLastQueue] = useState(1);
   const [estimatedTime, setEstimatedTime] = useState(null);
-  const [timeoutId, setTimeoutId] = useState(null);
+  const [showReminder, setShowReminder] = useState(false);
 
+  useEffect(() => {
+    // Use SweetAlert2 modal when the reminder is triggered
+    if (showReminder) {
+      Swal.fire({
+        title: 'Your are nearing your estimated wait time!',
+        icon: 'info',
+        text: 'Please prepare all necessary documents.',
+        confirmButtonText: 'OK',
+      });
+      // Reset the showReminder state to false after showing the modal
+      setShowReminder(false);
+    }
+  }, [showReminder]); // useEffect will run when showReminder changes
 
   // Function to join the waiting line
   const joinWaitingLine = () => {
@@ -74,6 +87,13 @@ function LandingPageApp () {
     const newPerson = lastQueue.toString();
     setPeopleInLine([...peopleInLine, newPerson]);
     setLastQueue(lastQueue + 1);
+
+    const estimatedTime = calculateEstimatedTime();
+    if (estimatedTime !== null && estimatedTime <= 4) {
+      // Show reminder if estimated time is less than or equal to 5 minutes
+      setShowReminder(true);
+    }
+
     // console.log(`
     // new person: ${newPerson}
     // last queue: ${lastQueue}
@@ -102,13 +122,17 @@ function LandingPageApp () {
     }
 
     const baseDuration = 3; // 3 minutes
-    const incrementPerUser = 2; // Increment duration for each user
+    const incrementPerUser = 3; // Increment duration for each user
     const maxDuration = 5; // Maximum waiting time (in minutes) before incrementing
     const numUsers = peopleInLine.length;
-    let calculatedTime  = baseDuration + (numUsers * incrementPerUser);
+    console.log(`Number of Users: ${peopleInLine.length}
+                 Base Duration" ${baseDuration}
+                 Increment: ${incrementPerUser}`);
+    
+    let calculatedTime  = numUsers * incrementPerUser;
 
-    // if (estimatedTime > maxDuration) {
-    //   estimatedTime += 0.5 * baseDuration; // Add 50% of base duration if it exceeds the maximum
+    // if (calculatedTime > maxDuration) {
+    //   calculatedTime += (0.5 * baseDuration); // Add 50% of base duration if it exceeds the maximum
     // }
 
     return calculatedTime;
@@ -176,7 +200,7 @@ function LandingPageApp () {
                   {/* position: 'absolute', bottom: 0, width: '68%' */}
                     <Card.Body className='text-center'>
                       <Card.Title>FROM THIS POINT</Card.Title>
-                        <Card.Text>
+                        <Card.Text className='text-center'>
                           ESTIMATED WAITING TIME: {calculateEstimatedTime() !== null ? (
                             `${calculateEstimatedTime()} MINUTES`) : <p></p>}
                           {/* ESTIMATED WAITING TIME: {calculateEstimatedTime() !== null ? '${calculateEstimatedTime()} minutes' : ''} */}
@@ -202,4 +226,5 @@ function LandingPageApp () {
     </div>
   );
 }
+
 export default LandingPageApp;
