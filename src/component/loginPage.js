@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import {Form,Button, Container, Row, Col, Modal, ModalBody} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Validation from './loginValidation';
+import Swal from 'sweetalert2';
 
 
 
@@ -14,17 +15,30 @@ function LoginPage({show, handleClose}) {
     })  
 
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
 
-    const handleInput = (event) =>{
-      setValues(prev => ({...prev, [event.target.name]: [event.target.value]}));
-    }
+    const handleInput = (event) => {
+      setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+    };
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      setValues(Validation(values));
-      // axios.post("http://localhost:8081/");
-
-  }
+      setErrors(Validation(values));
+      if(errors.email === "" && errors.password === "") {
+        axios.post('http://localhost:3031/login', values)
+        .then(res => {
+          if(res.data === "Success") {
+            navigate('/landingPage');
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Incorrect credentials",
+              text: "No record existed!"
+            });
+          }
+        })
+      }
+    };
 
 // function authenticate(e) {
 
@@ -73,8 +87,11 @@ function LoginPage({show, handleClose}) {
               <Row>
                 <Form.Group as={Col} className="mb-3" controlId="formBasicEmail">
                   <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
-                  <Form.Control type="email" placeholder='Enter Email' id='email'
-                    name= 'email' onChange = {handleInput}/>
+                  <Form.Control 
+                    type="email" 
+                    placeholder='Enter Email' 
+                    name= 'email' 
+                    onChange = {handleInput}/>
                     {/* onChange={(e) => setEmail(e.target.value)} */}
                     {errors.email && <span className='text-danger'> {errors.email}</span>}
                 </Form.Group>
@@ -82,30 +99,22 @@ function LoginPage({show, handleClose}) {
               <Row>
                   <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
                     <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
-                      <Form.Control type="password" placeholder='Enter Password' id='password'
-                      name = 'password' onChange = {handleInput} />
-                      {/* onChange={(e) => setPassword(e.target.value)} */}
-                      
+                      <Form.Control 
+                        type="password" 
+                        placeholder='Enter Password' 
+                        name = 'password' 
+                        onChange = {handleInput} />
+                      {/* onChange={(e) => setPassword(e.target.value)} */}         
                       {errors.password && <span className='text-danger'> {errors.password}</span>}
                   </Form.Group>
-              </Row>
-                  
+              </Row>  
               <Row>
                 <Col className='text-center' xs={12}>
-                  {/* { isActive ? */}
-                  {/* <Link to="/landingPage"> */}
-                    <Button style={{ width:'150px'}}variant="success" id="loginBtn" type="submit"> 
-                      Login
-                    </Button>
-                  {/* </Link>  */}
-                  {/* : 
-                  <Button style={{ width:'150px'}}variant="danger" id="loginBtn" type="submit" disabled> 
+                  <Button style={{ width:'150px'}}variant="success" id="loginBtn" type="submit"> 
                     Login
                   </Button>
-                } */}
                 </Col>
               </Row>
-              
             </Container>
           </Form>
         </ModalBody>
