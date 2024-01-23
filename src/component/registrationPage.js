@@ -3,6 +3,7 @@ import {Form,Button, Container, Row, Col, Modal, ModalBody, Alert} from 'react-b
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Validation from './regValidation'
+import Swal from 'sweetalert2';
 
 function RegistrationPage({show, handleClose}) {
   
@@ -30,9 +31,27 @@ function RegistrationPage({show, handleClose}) {
         // Continue with form submission
         axios.post('http://localhost:3031/registrationPage', values)
           .then(res => {
-            handleClose();
+            if (res.data.error) {
+              // Registration error, show SweetAlert error
+              Swal.fire({
+                icon: "error",
+                title: "Registration Error",
+                text: res.data.error,
+              });
+            } else {
+              // Registration successful, close the modal
+              handleClose();
+            }
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            console.log(err);
+            // Handle other errors if needed
+            Swal.fire({
+              icon: "error",
+              title: "Registration Error",
+              text: "An error occurred during registration.",
+            });
+          });
       }
     };
 
@@ -52,7 +71,7 @@ function RegistrationPage({show, handleClose}) {
                   name = "fName" 
                   onChange = {handleInput}
                 />
-                {errors.email && <span className='text-danger'> {errors.fName}</span>}
+                {errors.fName && <span className='text-danger'> {errors.fName}</span>}
             </Form.Group>
           </Row>
 
@@ -65,7 +84,7 @@ function RegistrationPage({show, handleClose}) {
                   name = "lName" 
                   onChange = {handleInput}
                 />
-                {errors.email && <span className='text-danger'> {errors.lName}</span>}
+                {errors.lName && <span className='text-danger'> {errors.lName}</span>}
             </Form.Group>
           </Row>
 
@@ -90,7 +109,7 @@ function RegistrationPage({show, handleClose}) {
                   name = "password" 
                   onChange = {handleInput}
                 />
-                {errors.email && <span className='text-danger'> {errors.password}</span>}
+                {errors.password && <span className='text-danger'> {errors.password}</span>}
             </Form.Group>
           </Row>
 
@@ -102,7 +121,7 @@ function RegistrationPage({show, handleClose}) {
                   name = "password2" 
                   onChange={handleInput}
                 />
-                {errors.email && <span className='text-danger'> {errors.password}</span>}
+                {errors.password2 && <span className='text-danger'> {errors.password2}</span>}
             </Form.Group>
           </Row>
           <Row>
