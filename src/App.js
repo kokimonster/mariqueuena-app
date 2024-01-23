@@ -13,7 +13,7 @@ function App() {
   const [data, setData] = useState([])
 
     useEffect(()=>{
-      fetch('http://localhost:8081/')
+      fetch('http://localhost:3031/')
       .then(res => res.json())
       .then(data => console.log(data))
       .catch(err => console.log(err));
