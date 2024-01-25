@@ -40,40 +40,6 @@ function LoginPage({show, handleClose}) {
       }
     };
 
-// function authenticate(e) {
-
-    //   e.preventDefault();
-
-    //   fetch('${process.env.REACT_APP_API_URL}/users/login', {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-type" : "appplication/json"
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       password: password
-    //     })
-    //   })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-
-    //     if(typeof data.access !== "")
-    //   })
-
-    // }
-    // State to determine whether submit button is enabled or not
-    // const [isActive, setIsActive] = useState(true);
-    // useEffect(() => {
-
-    //   //Validation to enable submit button when all fields are populated and both passwords matched
-    //   if(email !== '' && password !== ''){
-    //     setIsActive(true);
-    //   }else{
-    //     setIsActive(false);
-    //   }
-    // }, [email, password]);
-
   return (
 
     <Modal className="modal" show={show} onHide={handleClose}>
