@@ -3,18 +3,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import '../App.css';
+import CountDownTimer from './CountdownTimer';
+
 
 function LandingPageApp() {
   const [peopleInLine, setPeopleInLine] = useState([]);
   const [servedPerson, setServedPerson] = useState(null);
   const [lastQueue, setLastQueue] = useState(1);
-  const [estimatedTime, setEstimatedTime] = useState(null);
+  const [estimatedTime, setEstimatedTime] = useState(1);
   const [showReminder, setShowReminder] = useState(false);
-
+  
   useEffect(() => {
     if (showReminder) {
       Swal.fire({
-        title: 'You are nearing your estimated wait time!',
+        title: 'Your estimated waiting time is ',
         icon: 'info',
         text: 'Please prepare all necessary documents.',
         confirmButtonText: 'OK',
@@ -23,21 +25,11 @@ function LandingPageApp() {
     }
   }, [showReminder]);
 
-
-  const joinWaitingLine = () => {
-    const newPerson = lastQueue.toString();
-    setPeopleInLine([...peopleInLine, newPerson]);
-    setLastQueue(lastQueue + 1);
-
-    const estimatedTime = calculateEstimatedTime();
-    if (estimatedTime !== null && estimatedTime <= 4) {
-      setShowReminder(true);
-    }
-  };
-
+ // Run joinWaitingLine once when the component mounts
   useEffect(() => {
     joinWaitingLine();
-  }, []); // Run joinWaitingLine once when the component mounts
+  }, []);
+
 
   const calculateEstimatedTime = () => {
     if (peopleInLine.length === 0) {
@@ -49,13 +41,44 @@ function LandingPageApp() {
     const numUsers = peopleInLine.length;
 
     let calculatedTime = numUsers * incrementPerUser;
+    console.log(`Number of People in Line: ${numUsers}`)
 
-    return calculatedTime;
+    // if(numUsers < 0){
+    //   let calculatedTime = numUsers * incrementPerUser;
+    // } else {
+    //   let calculatedTime = 1 * 3;
+    // }
+    console.log(`Calculated Time: ${Math.max(calculatedTime, 1)}`);
+
+    return Math.max(calculatedTime, 1);
+  };
+
+  // useEffect(() => {
+  //   const initialEstimatedTime = calculateEstimatedTime();
+  //   console.log(`Initial Estimated Time: ${calculateEstimatedTime()}`)
+  //   setEstimatedTime(initialEstimatedTime);
+  //   if (initialEstimatedTime !== null && initialEstimatedTime <= 4) {
+  //     setShowReminder(true);
+  //   }
+  // }, []);
+
+  const joinWaitingLine = () => {
+    const newPerson = lastQueue.toString();
+    setPeopleInLine([...peopleInLine, newPerson]);
+    setLastQueue(lastQueue + 1);
+
+    const estimatedTime = calculateEstimatedTime();
+    setEstimatedTime(estimatedTime);
+    if (estimatedTime !== null && estimatedTime <= 4) {
+      setShowReminder(true);
+    }
   };
 
   const getNextInQueue = () => {
     if (peopleInLine.length > 0) {
       return peopleInLine[0];
+    } else {
+      return `-`;
     }
     return null;
   };
@@ -68,72 +91,98 @@ function LandingPageApp() {
     }
   };
 
+  const handleTimeUp = () => {
+    // Add your logic here when the estimated waiting time is up
+    // For example, show a notification
+    console.log("Time's up!");
+  };
+
   return (  
+    
+    
     <div className="landingPageStyle">
-      <Navbar className=" justify-content-between"  style={{backgroundColor: "#231099"}}>
-          <Container>
-            <Navbar.Brand href="/">
-              <img 
-                src={require('../img/mrkna.png')}
-                width="50"
-                height="50"
-                className="d-inline-block align-top"
-                alt="Marikina Logo"
-              />
-            </Navbar.Brand>
-            <div className='d-inline-block text-center text-light'> 
-            <h1 className='text-xl'>MARIQUEUENA</h1>
-            <h6>COMELEC MARIKINA</h6>
-            </div>
-            <Navbar.Brand href="/">
-              <img
-                src={require('../img/comelec.png')}
-                width="50"
-                height="50"
-                className="d-inline-block align-top"
-                alt="Comelec Logo"
-              />
-            </Navbar.Brand>
-          </Container>
-      </Navbar>
-      
       <div className="gradient-bg-landing">
-        <div>
+        <Navbar className=" justify-content-between mb-0"  style={{backgroundColor: "#231099"}}>
           <Container>
-            <Row style={{ height: '100%' }}>
-              <Col md={12} className="mb-4 d-flex flex-column justify-content-between">
+              <Navbar.Brand href="/">
+                <img 
+                  src={require('../img/mrkna.png')}
+                  width="50"
+                  height="50"
+                  className="d-inline-block align-top"
+                  alt="Marikina Logo"
+                />
+              </Navbar.Brand>
+              <div className='d-inline-block text-center text-light'> 
+              <h1 className='text-xl'>MARIQUEUENA</h1>
+              <h6>COMELEC MARIKINA</h6>
+              </div>
+              <Navbar.Brand href="/">
+                <img
+                  src={require('../img/comelec.png')}
+                  width="50"
+                  height="50"
+                  className="d-inline-block align-top"
+                  alt="Comelec Logo"
+                />
+              </Navbar.Brand>
+          </Container>
+        </Navbar>
 
-                {/* Next in Queue */}
-                <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000' }}>
-                  <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                    <h1>Next in Queue</h1>
-                    <div className="mt-3 me-4">{getNextInQueue()}</div>
-                  </Card.Body>
-                </Card>
-                
-                {/* Your Queue Number */}
-                <Card className="mt-4 flex-grow-1 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.57)', color: '#000000', height: '100%' }}>
-                  <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                    <h1>Your Queue Number</h1>
-                    <div className="mt-3 me-4">{lastQueue - 1}</div>
-                  </Card.Body>
-                </Card>
+        <Container className='d-flex align-items-center justify-content-center'>
+          <Row>
+            <Col className="mt-4 mb-4">
 
-                {/* Estimated Waiting Time */}
-                <Card className="mt-4 flex-grow-1" style={{ backgroundColor: 'rgba(255, 215, 0, 0.57)', color: '#000000',  }}>
-                    <Card.Body className='text-center'>
-                    <h1>Estimated Waiting Time</h1>
-                    <div className="mt-3 me-4">{calculateEstimatedTime()} MINUTES</div>
-                  </Card.Body>
-                </Card>
+              {/* Next in Queue */}
+              <Card className="mt-4 mb-4" style={{ 
+                backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+                color: '#000000', 
+                borderRadius: '15px', 
+                boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              }}>
+                <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
+                  <h1>Next in Queue</h1>
+                  <div className="mt-2 me-4">{getNextInQueue()}</div>
+                </Card.Body>
+              </Card>
+            
+              {/* Your Queue Number */}
+              <Card className="mt-2 mb-2 " style={{ 
+                backgroundColor: 'rgba(255, 255, 255, 0.57)', 
+                color: '#000000', 
+                borderRadius: '15px', 
+                boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              }}>
+                <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
+                  <h1>Your Queue Number</h1>
+                  <div className="mt-2 me-4">{lastQueue - 1}</div>
+                </Card.Body>
+              </Card>
 
-                <Button variant="primary" className="mt-4" onClick={serveNextPerson}>
+              {/* Estimated Waiting Time */}
+              <Card className="mt-4 mb-4" style={{ 
+                backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+                color: '#000000', 
+                borderRadius: '15px', 
+                boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              }}>
+              <Card.Body className='text-center'>
+                  <h2>From This Point:</h2>
+                  <CountDownTimer peopleInLine={peopleInLine.length} />
+              </Card.Body>
+              </Card>
+
+              <Container className="p-2 pb-0 d-flex justify-content-center">
+                <Button variant="success" onClick={joinWaitingLine}>
+                  Join the Line
+                </Button>
+                <Button variant="primary" className="ms-3" onClick={serveNextPerson}>
                   Serve Next
                 </Button>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+              </Container>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </div>
   );
