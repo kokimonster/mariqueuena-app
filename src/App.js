@@ -6,6 +6,7 @@ import LandingPageApp from "./component/landingPage";
 import LoginPage from "./component/loginPage";
 import Homepage from "./component/homePage";
 import RegistrationPage from "./component/registrationPage";
+import QueuePageApp from "./component/queuePage";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/loginPage" Component={LoginPage}></Route>
         <Route path="/registrationPage" Component={RegistrationPage}></Route>
         <Route path="/landingPage" Component={LandingPageApp}></Route>
+        <Route path="/queuePage" Component={QueuePageApp}></Route>
       </Routes>
     </Router>      
     )
