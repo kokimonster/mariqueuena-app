@@ -1,142 +1,75 @@
 import React, { useState } from 'react';
-import {Form,Button, Container, Row, Col, Modal, ModalBody, Alert} from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Validation from './regValidation'
+import { Form, Button, Container, Row, Col, Modal, ModalBody } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import BasicInfoForm from './basicInfoForm';
+import PasswordForm from './PasswordForm';
 
-function RegistrationPage({show, handleClose}) {
-  
-    const [validated, setValidated] = useState(false);
-    const [errors, setErrors] = useState({});
+function RegistrationPage({ show, handleClose }) {
+    const [currentPage, setCurrentPage] = useState(1); // Track current page (1 for basic info, 2 for password)
+    const [values, setValues] = useState({}); // Store form values
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-    // State hooks to store the values of the input fields
-    const [values, setValues] = useState({
-      fName: '',
-      lName: '',
-      email: '',
-      password: ''
-    })  
+
+    // Reset state when the modal is closed
+    const resetState = () => { 
+      setCurrentPage(1);
+      setValues({});
+  };
 
     const handleInput = (event) => {
-      setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+        setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
     };
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const validationErrors = Validation(values);
-      setErrors(validationErrors);
-    
-      if (Object.keys(validationErrors).length === 0) {
-        // Continue with form submission
-        axios.post('http://localhost:3031/registrationPage', values)
-          .then(res => {
-            if (res.data.error) {
-              // Registration error, show SweetAlert error
-              Swal.fire({
-                icon: "error",
-                title: "Registration Error",
-                text: res.data.error,
-              });
-            } else {
-              // Registration successful, close the modal
-              handleClose();
-            }
-          })
-          .catch(err => {
-            console.log(err);
-            // Handle other errors if needed
+    const handleNext = () => {
+        if (currentPage === 1) {
+            // Proceed to password creation page
+            setCurrentPage(2);
+        } else {
+
+        const confirmPasswordValue = values.confirmPassword;
+        setConfirmPassword(confirmPasswordValue);
+        // Check if passwords match
+        if (values.password && confirmPasswordValue !== values.password) {
+            setPasswordError('Passwords do not match.');
             Swal.fire({
-              icon: "error",
-              title: "Registration Error",
-              text: "An error occurred during registration.",
+                icon: 'error',
+                title: 'Password Error',
+                text: 'Passwords do not match.',
             });
-          });
-      }
+        } else {
+                setPasswordError('');
+                console.log('Basic Info:', values);
+                console.log('Password:', values.password);
+                handleClose(); // Close modal after submission
+                resetState();  // Reset the modal after submission
+            }
+        }
     };
 
-  return (
-    <Modal className="modal" show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Registration Form</Modal.Title>
-        </Modal.Header>
-      <ModalBody>
-        <Form className="formStyle" onSubmit={handleSubmit}>
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicName">
-                <Form.Label style={{ fontWeight: 'bold' }} aria-placeholder='First Name'>First Name</Form.Label>
-                <Form.Control
-                  placeholder='Enter your first name'
-                  type="text"
-                  name = "fName" 
-                  onChange = {handleInput}
-                />
-                {errors.fName && <span className='text-danger'> {errors.fName}</span>}
-            </Form.Group>
-          </Row>
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicLastName">
-                <Form.Label style={{ fontWeight: 'bold' }}>Last Name</Form.Label>
-                <Form.Control
-                  placeholder='Enter your last name'
-                  type="text"
-                  name = "lName" 
-                  onChange = {handleInput}
-                />
-                {errors.lName && <span className='text-danger'> {errors.lName}</span>}
-            </Form.Group>
-          </Row>
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicEmail">
-                <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
-                <Form.Control
-                  placeholder='Enter your email'
-                  type="email"
-                  name = "email" 
-                  onChange = {handleInput}
-                />
-                {errors.email && <span className='text-danger'> {errors.email}</span>}
-            </Form.Group>
-          </Row>
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
-                <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name = "password" 
-                  onChange = {handleInput}
-                />
-                {errors.password && <span className='text-danger'> {errors.password}</span>}
-            </Form.Group>
-          </Row>
-
-          <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicPassword2">
-                <Form.Label style={{ fontWeight: 'bold' }}>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name = "password2" 
-                  onChange={handleInput}
-                />
-                {errors.password2 && <span className='text-danger'> {errors.password2}</span>}
-            </Form.Group>
-          </Row>
-          <Row>
-            <Col className='text-center' xs={12}>
-              <Form.Group>
-                <Button style={{ width:'150px' }}variant="primary" type="submit"> 
-                  Sign up
-                </Button>
-              </Form.Group>
-            </Col>
-          </Row>
-        </Form>
-      </ModalBody>
-    </Modal>
-  );
+    return (
+        <Modal className="modal" show={show} onHide={() => { handleClose(); resetState();}}>
+            <Modal.Header> 
+                <Modal.Title>{currentPage === 1 ? 'Basic Information' : 'Create Password'}</Modal.Title>
+            </Modal.Header>
+            <ModalBody>
+                {currentPage === 1 ? (
+                    <BasicInfoForm values={values} handleInput={handleInput} />
+                ) : (
+                    <PasswordForm values={values} handleInput={handleInput} />
+                )}
+                <Row>
+                    <Col className='text-center' xs={12}>
+                        <Form.Group>
+                            <Button style={{ width: '150px' }} variant="primary" onClick={handleNext}>
+                                {currentPage === 1 ? 'Next' : 'Submit'}
+                            </Button>
+                        </Form.Group>
+                    </Col>
+                </Row>
+            </ModalBody>
+        </Modal>
+    );
 }
 
-export default RegistrationPage
+export default RegistrationPage;
