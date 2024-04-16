@@ -78,6 +78,15 @@ body.swal-shown > [aria-hidden='true'] {
   transition: 0.1s filter;
   filter: blur(9px);
 }
+.modal-content {
+  height: auto; /* or set a fixed height */
+  max-height: 80vh; /* adjust as needed */
+  overflow-y: auto; /* add scrollbar if content exceeds height */
+}
+
+.label-resized {
+  font-size: 14px; /* Adjust the font size as needed */
+}
 
 .modal {
   position: absolute;
