@@ -71,10 +71,6 @@ function LoginPage({show, handleClose}) {
                         name = 'password' 
                         onChange = {handleInput} />
                       {/* onChange={(e) => setPassword(e.target.value)} */}         
-                      <Form.Text id="passwordHelpBlock" muted>
-                        Your password must be 8-20 characters long, contain letters and numbers,
-                        and must not contain spaces, special characters, or emoji.
-                      </Form.Text>
                       {errors.password && <span className='text-danger'> {errors.password}</span>}
                   </Form.Group>
               </Row>  

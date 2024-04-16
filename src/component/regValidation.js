@@ -22,20 +22,24 @@ function Validation(values) {
       error.lName = "Invalid last name format";
     }
   
+    if (values.mNumber === "") {
+      error.mNumber = "Mobile Number should not be empty";
+    } else if (values.mNumber > 12) {
+      error.mNumber = "Invalid mobile number";
+    }
     if (values.email === "") {
       error.email = "Email should not be empty";
     } else if (!email_pattern.test(values.email)) {
       error.email = "Invalid email format";
     }
-  
-    if (values.password === "") {
-      error.password = "Password should not be empty";
-    } else if (!password_pattern.test(values.password)) {
-      error.password = "Password must contain at least 1 digit, 1 small letter, 1 capital letter, and be at least 8 characters long";
-    } else if(values.password != values.password2){
-      error.password2 = "Password is not the same as above."
+    if (values.idType === "") {
+      error.idType = "Please select an ID Type!";
     }
-  
+
+    if (values.idNumber === "") {
+      error.idNumber = "ID Number should not be empty";
+    } 
+
     return error;
   }
 
