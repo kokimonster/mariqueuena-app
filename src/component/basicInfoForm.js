@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
-const BasicInfoForm = ({ values, handleInput }) => {
+const BasicInfoForm = ({ values, file, handleInput, handleFile, errors}) => {
     return (
         <Form>
             <Row className='mb-3'>
@@ -9,43 +9,47 @@ const BasicInfoForm = ({ values, handleInput }) => {
                 <Form.Group as={Col} controlId='formBasicName'>
                     <Form.Floating>
                         <Form.Control
-                            id='floatingInputCustom'
+                            id='fName'
                             placeholder='First Name'
                             type='text'
                             name='fName'
                             value={values.fName || ''}
                             onChange={handleInput}
+                            isInvalid={errors.fName}
                             autoFocus
                         />
-                        <label htmlFor="floatingInputCustom">First Name</label>
+                        <label htmlFor="fName" className='label-resized'>First Name</label>
+                        <Form.Control.Feedback className="custom-feedback" type="invalid">{errors.fName}</Form.Control.Feedback>
                     </Form.Floating>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId='formBasicName'>
                     <Form.Floating>
                         <Form.Control
-                            id='floatingInputCustom'
+                            id='mInitial'
                             placeholder='Middle Initial'
                             type="text"
                             name="mInitial"
                             value={values.mInitial || ''}
                             onChange={handleInput}
                         />
-                        <label htmlFor="floatingInputCustom">Middle Initial</label>
+                        <label htmlFor="mInitial" className='label-resized'>Middle Initial</label>
                     </Form.Floating>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId='formBasicName'>
                     <Form.Floating>
                         <Form.Control
-                            id='floatingInputCustom'
+                            id='lName'
                             placeholder='Last Name'
                             type="text"
                             name="lName"
                             value={values.lName || ''}
+                            isInvalid={errors.lName}
                             onChange={handleInput}
                         />
-                        <label htmlFor="floatingInputCustom">Last Name</label>
+                        <label htmlFor="lName" className='label-resized'>Last Name</label>
+                        <Form.Control.Feedback type="invalid">{errors.lName}</Form.Control.Feedback>
                     </Form.Floating>
                 </Form.Group>
             </Row>
@@ -58,8 +62,10 @@ const BasicInfoForm = ({ values, handleInput }) => {
                         type="date"
                         name="dateOfBirth"
                         value={values.dateOfBirth || ''}
+                        isInvalid={errors.dateOfBirth}
                         onChange={handleInput}
                     />
+                    <Form.Control.Feedback type="invalid">{errors.dateOfBirth}</Form.Control.Feedback>
                 </Form.Group>
             </Row>
 
@@ -73,9 +79,11 @@ const BasicInfoForm = ({ values, handleInput }) => {
                             type="text"
                             name="mNumber"
                             value={values.mNumber || ''}
+                            isInvalid={errors.mNumber}
                             onChange={handleInput}
                         />
-                        <label htmlFor="floatingInputCustom">Mobile Number</label>
+                        <label htmlFor="mNumber" className='label-resized'>Mobile Number</label>
+                        <Form.Control.Feedback type="invalid">{errors.mNumber}</Form.Control.Feedback>
                     </Form.Floating>
                     <Form.Floating>
                         <Form.Control
@@ -84,9 +92,11 @@ const BasicInfoForm = ({ values, handleInput }) => {
                             type="text"
                             name="email"
                             value={values.email || ''}
+                            isInvalid={errors.email}
                             onChange={handleInput}
                         />
-                        <label htmlFor="floatingInputCustom">Email Address</label>
+                        <label htmlFor="email" className='label-resized'>Email Address</label>
+                        <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                     </Form.Floating>
                 </Form.Group>
             </Row>
@@ -94,36 +104,37 @@ const BasicInfoForm = ({ values, handleInput }) => {
             <Row className='mb-3'>
                 <Form.Group as={Col} controlId='formValidId'>
                     <Form.Label style={{ fontWeight: 'bold' }}>Valid ID</Form.Label>
-                    <Form.Floating>
-                        <Form.Select aria-label="Default select example">
+                        <Form.Select onChange={handleInput} name="idType">
                             <option>Select ID Type: </option>
-                            <option value="1">Driver's License</option>
-                            <option value="2">SSS</option>
-                            <option value="3">PhilHealth ID</option>
-                            <option value="4">Passport</option>
+                            <option value="DriverLicense">Driver's License</option>
+                            <option value="SSS">SSS</option>
+                            <option value="PhilHealth">PhilHealth ID</option>
+                            <option value="Passport">Passport</option>
                         </Form.Select>
-                        <label htmlFor='floatingInputCustom'>ID Type</label>
-                    </Form.Floating>
                     <Form.Floating>
                         <Form.Control
                             id='floatingInputCustom'
                             placeholder='ID Verification'
                             type="file"
-                            name="idImage"
-                            onChange={handleInput}
+                            name = "idImage"
+                            isInvalid={errors.file}
+                            onChange={handleFile}
                         />
-                        <label htmlFor="floatingInputCustom">ID Verification*</label>
+                        <label htmlFor="idImage">ID Verification*</label>
+                        <Form.Control.Feedback type="invalid">{errors.file}</Form.Control.Feedback>
                     </Form.Floating>
                     <Form.Floating>
                         <Form.Control
-                            id='floatingInputCustom'
+                            id='idNumber'
                             placeholder='ID Number'
                             type="text"
                             name="idNumber"
                             value={values.idNumber || ''}
+                            isInvalid={errors.idNumber}
                             onChange={handleInput}
                         />
-                        <label htmlFor="floatingInputCustom">ID Number</label>
+                        <label htmlFor="idNumber" className='label-resized'>ID Number</label>
+                        <Form.Control.Feedback type="invalid">{errors.idNumber}</Form.Control.Feedback>
                     </Form.Floating>
                 </Form.Group>
             </Row>
