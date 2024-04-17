@@ -71,6 +71,34 @@ function RegistrationPage({ show, handleClose }) {
             
         return errors;
     };
+       // Password validation function
+    function validatePassword(password) {
+        let password_errors = [];
+
+        // Check for at least one capital letter
+        if (!/[A-Z]/.test(password)) {
+            password_errors = ("Password must contain at least one capital letter.");
+        }
+        // Check for at least one digit
+        if (!/\d/.test(password)) {
+            password_errors = ("Password must contain at least one digit.");
+        }
+        // Check for at least one lowercase letter
+        if (!/[a-z]/.test(password)) {
+            password_errors = ("Password must contain at least one lowercase letter.");
+        }
+        // Check for at least one special character
+        if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+            password_errors = ("Password must contain at least one special character.");
+        }
+        // Check for minimum length of 8 characters
+        if (password.length < 8) {
+            password_errors = ("Password must be at least 8 characters long.");
+        }
+
+        return password_errors;
+    }
+    
     const handleNext = () => {
         const validationErrors = validateForm(values, file) ;
         setErrors(validationErrors);
@@ -96,6 +124,9 @@ function RegistrationPage({ show, handleClose }) {
         event.preventDefault();
         const confirmPasswordValue = values.confirmPassword;
         setConfirmPassword(confirmPasswordValue);
+        const passwordValidation = validatePassword(values.password) ;
+        setErrors(passwordValidation);
+
         // Check if passwords match
         if (values.password && confirmPasswordValue !== values.password) {
             setPasswordError('Passwords do not match.');
@@ -105,6 +136,12 @@ function RegistrationPage({ show, handleClose }) {
                 text: 'Passwords do not match.',
             });
 
+        } else if (Object.keys(passwordValidation).length > 0) { 
+            Swal.fire({
+                icon: 'error',
+                title: 'Password Error',
+                text: passwordValidation
+            });
         } else {
             // Creation of the ID information
             const formData = new FormData();

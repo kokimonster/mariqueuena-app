@@ -36,9 +36,9 @@ const PasswordForm = ({ values, handleInput }) => {
             </Row>
 
             <Form.Text className="text-muted">
-                <p style={{ marginBottom: '5px' }}>Minimum of 8 characters*</p>
-                <p style={{ marginBottom: '5px' }}>With capital letter*</p>
-                <p style={{ marginBottom: '5px' }}>With special symbol*</p>
+                <p style={{ marginBottom: '3px' }}>With one capital letter*</p>
+                <p style={{ marginBottom: '3px' }}>With one special symbol*</p>
+                <p style={{ marginBottom: '3px' }}>Minimum of 8 characters*</p>
             </Form.Text>
 
             <Form.Group controlId="formBasicConfirmPassword" className='mb-3'>
