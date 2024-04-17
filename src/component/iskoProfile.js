@@ -2,13 +2,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col } from 'react-bootstrap';
 import '../App.css';
 
-function LeniProfileApp() {
+function IskoProfileApp() {
 
     const candidates = [
         {
             id: 1,
-            name: 'Leni Robredo',
-            image: require('../img/robredo_1.png'),
+            name: 'Isko Moreno',
+            image: require('../img/isko_1.png'),
             description: `Leni Robredo, 56, is currently serving as the 14th vice president of the Philippines. Her office has garnered the highest audit rating from the Commission on Audit for three consecutive years (2018-2020) 
             and has been recognized by Malacañang for its pandemic response programs across the country.
             <br>
@@ -154,4 +154,4 @@ function LeniProfileApp() {
     );
   }
   
-  export default LeniProfileApp;
+  export default IskoProfileApp;

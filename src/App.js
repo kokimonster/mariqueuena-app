@@ -9,6 +9,11 @@ import RegistrationPage from "./component/registrationPage";
 import QueuePageApp from "./component/queuePage";
 import CandidatesProfileApp from "./component/candidatesProfile";
 import LeniProfileApp from "./component/leniProfile";
+import LeodyProfileApp from "./component/leodyProfile";
+import IskoProfileApp from "./component/iskoProfile";
+import MannyProfileApp from "./component/mannyProfile";
+import LacsonProfileApp from "./component/lacsonProfile";
+import MarcosProfileApp from "./component/marcosProfile";
 
 
 function App() {
@@ -32,6 +37,11 @@ function App() {
         <Route path="/queuePage" Component={QueuePageApp}></Route>
         <Route path="/candidatesProfile" Component={CandidatesProfileApp}></Route>
         <Route path="/leniProfile" Component={LeniProfileApp}></Route>
+        <Route path="/leodyProfile" Component={LeodyProfileApp}></Route>
+        <Route path="/iskoProfile" Component={IskoProfileApp}></Route>
+        <Route path="/mannyProfile" Component={MannyProfileApp}></Route>
+        <Route path="/lacsonProfile" Component={LacsonProfileApp}></Route>
+        <Route path="/marcosProfile" Component={MarcosProfileApp}></Route>
       </Routes>
     </Router>      
     )

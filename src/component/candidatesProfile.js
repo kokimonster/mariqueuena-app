@@ -15,25 +15,30 @@ function CandidatesProfileApp() {
         },
         {
             id: 2,
-            name: 'Ka Leodi',
+            name: 'Ka Leody',
             image: require('../img/leody.png'),
+            profileLink: '/leodyProfile',
         },
         {
             id: 3,
             name: 'Isko Moreno',
             image: require('../img/isko_1.png'),
+            profileLink: '/iskoProfile',
         },{
             id: 4,
             name: 'Manny Pacquiao',
             image: require('../img/pacquiao_1.png'),
+            profileLink: '/mannyProfile',
         },{
             id: 5,
             name: 'Ping Lacson',
             image: require('../img/lacson_1.png'),
+            profileLink: '/lacsonProfile',
         },{
             id: 6,
             name: 'Bong Bong Marcos',
             image: require('../img/marcos_1.png'),
+            profileLink: '/marcosProfile',
         }
 
     ]
