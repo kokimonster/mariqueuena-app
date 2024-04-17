@@ -7,6 +7,8 @@ import LoginPage from "./component/loginPage";
 import Homepage from "./component/homePage";
 import RegistrationPage from "./component/registrationPage";
 import QueuePageApp from "./component/queuePage";
+import CandidatesProfileApp from "./component/candidatesProfile";
+import LeniProfileApp from "./component/leniProfile";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
         <Route path="/registrationPage" Component={RegistrationPage}></Route>
         <Route path="/landingPage" Component={LandingPageApp}></Route>
         <Route path="/queuePage" Component={QueuePageApp}></Route>
+        <Route path="/candidatesProfile" Component={CandidatesProfileApp}></Route>
+        <Route path="/leniProfile" Component={LeniProfileApp}></Route>
       </Routes>
     </Router>      
     )

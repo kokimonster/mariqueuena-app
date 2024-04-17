@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
 
 function LandingPageApp() {
+  const navigate = useNavigate();
 
   const handleCardClick = (action) => {
     switch(action) {
       case 'joinQueue':
-        //handle join queue action
+        navigate('/queuePage');
         break;
       case 'latestNews':
         //handle news action
         break;
       case 'candidatesProfile':
-        //handle candidates profile action
+        navigate('/candidatesProfile');
         break;
       case 'tipsAndTricks':
         //handle tips and tricks action
@@ -28,7 +30,7 @@ function LandingPageApp() {
   return(
     <div className="landingPageStyle">
       <div className="gradient-bg-landing">
-        <Navbar className=" justify-content-between mb-0"  style={{backgroundColor: "#231099"}}>
+        <Navbar className=" justify-content-between mb-0"  style={{backgroundColor: "#231099"}} sticky='top'>
           <Container>
               <Navbar.Brand href="/">
                 <img 
@@ -54,7 +56,11 @@ function LandingPageApp() {
               </Navbar.Brand>
           </Container>
         </Navbar>
-
+        <div>
+            <h1 className="mb-4" style={{textAlign: 'center', color: 'black', backgroundColor: 'rgb(255,255,255,0.59)', padding: '20px'}}>
+                MABUHAY! WELCOME TO MARIQUEUENA
+            </h1>
+          </div>
         <Container className="d-flex align-items-center justify-content-center mt-4">
         <Row>
           <Col>
