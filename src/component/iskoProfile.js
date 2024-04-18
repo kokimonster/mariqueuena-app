@@ -9,70 +9,56 @@ function IskoProfileApp() {
             id: 1,
             name: 'Isko Moreno',
             image: require('../img/isko_1.png'),
-            description: `Leni Robredo, 56, is currently serving as the 14th vice president of the Philippines. Her office has garnered the highest audit rating from the Commission on Audit for three consecutive years (2018-2020) 
-            and has been recognized by Malacañang for its pandemic response programs across the country.
+            description: `Francisco "Isko Moreno" Domagoso is the incumbent mayor of the City of Manila. After serving as the capital city's vice mayor from 2007 to 2016, he ran for senator but failed to secure a seat. He was then appointed by 
+            President Rodrigo Duterte as chairman of the board of the North Luzon Railways Corporation and later, undersecretary at the Department of Social Welfare and Development.
+            <br><br>
+            Since taking office, Domagoso has focused on improving public health and school facilities and providing low-cost housing for the urban poor, along with beautification and tourism projects across the city. Most recently, 
+            he has spearheaded Manila's pandemic response which includes mitigation, vaccination, and assistance programs along with giving out free medicine and testing services even for non-residents of the city .
+            <br><br>
+            Similar to Duterte in 2016, Moreno is campaigning on a platform of "duplicating" his local projects on a national level. These projects include socialized housing, modernized public school education and continuing the administration's anti-drug campaign.
             <br>
-            Her flagship program as vice president, Angat Buhay, is an anti-poverty program providing and coordinating support through multiple advocacy areas, namely food security and nutrition, healthcare, public education, 
-            rural development, housing, and resettlement and women empowerment. The Angat Buhay Program has mobilized at least P520 million worth of resources for the benefit of 321,000 families and 223 communities nationwide, according to the latest updates as of this writing.
-            <br>
-            Robredo has also led numerous relief operations through the Office of the Vice President. The same office manages a comprehensive COVID-19 response program that offers a range of assistance projects such as free 
-            transportation services to frontliners, free teleconsultation services nationwide, handling logistics and manpower to transmit vaccine supply from the national government task force to local government units and vaccine express sites in partnership with LGUs.
-            <br>
-            She first entered public office as representative of Camarines Sur’s third congressional district in 2013, less than a year after the death of her husband, then-Interior Secretary Jesse Robredo. Prior to this, 
-            Robredo worked as a lawyer with a focus on legal developmental work and providing legal assistance to marginalized clients.
-            <br>
-            In her lone term in the House of Representatives, Robredo principally authored three bills that were signed into law, including the Tax Incentives Management and Transparency Act.
-            <br>
-            If elected, Robredo says she will spend her first 100 days in office strengthening the country’s response to the coronavirus pandemic.`,
+           `,
             
-            details: `<b>Name to appear on the ballot:</b> ROBREDO, LENI<br>
-            <b>Full Name:</b> Maria Leonor (“Leni”) Gerona Robredo<br>
-            <b>Birthdate:</b> Apr. 23, 1965 (57 years old, on election day)<br>
-            <b>Birthplace:</b> Naga, Camarines Sur, Philippines<br>
+            details: `<b>Name to appear on the ballot:</b> DOMAGOSO, ISKO MORENO<br>
+            <b>Full Name:</b> Francisco “Isko” Moreno Domagoso<br>
+            <b>Birthdate:</b> October 24, 1974 (47 years old on election day)<br>
+            <b>Birthplace:</b> Tondo, Manila<br>
             <b>Residence:</b> Quezon City Reception House<br>
-            <b>Religion:</b> Roman Catholic<br>
+            <b>Religion:</b> <br>
             <b>Languages Spoken:</b> Filipino, English<br>
             <b>Parents:</b>
-              <ul>
-                <li>Antonio Gerona (1933-2013), father, former Naga City Regional Trial Court Judge</li>
-                <li>Salvacion Santo Tomas (1936-2020), mother</li>
-              </ul>
-            <b>Siblings:</b> 
-              <ul>
-                <li>Antonio Gerona Jr</li>
-                <li>Maria Lourdes Gerona</li>
-              </ul>
-            <b>Marital Status:</b> <i>Widow</i>; Jesse Robredo (former Interior Secretary and Local Government), 1958-2012
+              <ol>
+                <li>Joaquin Domagoso (1930–1995), Father</li>
+                <li>Rosario Moreno (1946–2020), Mother</li>
+              </ol>
+            <b>Siblings:</b> n/a <br>
+            <b>Marital Status:</b>  Married, Diana Lynn Ditan, private businesswoman
             <br><b>Children:</b>
-              <ul>
-                <li>Jessica Marie "Aika" Robredo</li>
-                <li>Janine Patricia "Tricia" Robredo</li>
-                <li>Jillian Therese Robredo</li>
-              </ul>`,
+              <ol>
+                <li>Vincent Patrick Domagoso</li>
+                <li>Frances Diane Domagoso</li>
+                <li>Joaguin Andre Domagoso</li>
+                <li>Franco Dylan Domagoso</li>
+                <li>Drake Marcus Domagoso</li>
+              </ol>`,
             advocacies: `<ul>
-            <li>free legal assistance to indigent litigants or clients</li>
-            <li>improving transparency and accountability in governmental functions</li>
-            <li>promoting anti-political dynasty prohibitions</li>
-            <li>revision and overhaul of flagship war on drugs</li>
+            <li>Low-cost housing in the city of Manila </li>
             </ul>`,
-            accomplishments: `<b>LEGISLATIVE ACHIEVEMENTS</b><br>
+            accomplishments: `<b>ACHIEVEMENTS AS A MAYOR: </b><br>
             <ul>
-              <li>Tax Incentives Management and Transparency Act (RA NO. 10708)</li>\
-              <li>Economic and Financial Literacy Act (RA NO. 10922)</li>
-            </ul>`,
-            achievements: `<ul>
-            <li>Angat Buhay Program</li>
-            <li>COVID-19 Response, Multi-secrtoral</li>
-            <li>Pandemic Relief Program</li>
-            <li>Improvement of the OVP</li>
-            <li>Relief Operations</li>
+              <li>Oversees Manila’s COVID-19 pandemic response</li>
+              <li>City beautification project</li>
+              <li>Thrust toward low-cost housing in slum areas</li>
+              <li>Improvement of health facilities</li>
+              <li>Support for education/li>
+              <li>Ayuda such as benefits under ordinance number 8565</li>
             </ul>`,
             platforms: `<ul>
-            <li>Restore trust in the government</li>
-            <li>End workplace discrimination </li>
-            <li>Support the unemployed and out-of-work</li>
-            <li>Boost Strength of Philippine industries</li>
-            <li>Support small businesses </li>
+            <li>Public infrastructure for basic needs, social services, and health</li>
+            <li>COVID-19 response; vaccine hesitancy </li>
+            <li>Countryside development and construction of tourism circuit</li>
+            <li>Education in far-flung areas</li>
+            <li>Peace and order </li>
             </ul>`,
         }
     ]
@@ -114,30 +100,30 @@ function IskoProfileApp() {
                 <div className="candidate-item">
                     <img src={candidate.image} alt={candidate.name} style={{width: '150px', height: '150px', borderRadius: '50%'}} className='candidate-image'/>
                     <h3 className='d-inline-block'>{candidate.name}</h3>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.description}}/>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>PERSONAL DETAILS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.details}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>MAJOR ADVOCACIES</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.advocacies}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>ACCOMPLISHMENTS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.accomplishments}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>PLATFORMS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.platforms}} />

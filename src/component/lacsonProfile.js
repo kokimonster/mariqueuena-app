@@ -9,70 +9,64 @@ function LacsonProfileApp() {
             id: 1,
             name: 'Ping Lacson',
             image: require('../img/lacson_1.png'),
-            description: `Leni Robredo, 56, is currently serving as the 14th vice president of the Philippines. Her office has garnered the highest audit rating from the Commission on Audit for three consecutive years (2018-2020) 
-            and has been recognized by Malacañang for its pandemic response programs across the country.
-            <br>
-            Her flagship program as vice president, Angat Buhay, is an anti-poverty program providing and coordinating support through multiple advocacy areas, namely food security and nutrition, healthcare, public education, 
-            rural development, housing, and resettlement and women empowerment. The Angat Buhay Program has mobilized at least P520 million worth of resources for the benefit of 321,000 families and 223 communities nationwide, according to the latest updates as of this writing.
-            <br>
-            Robredo has also led numerous relief operations through the Office of the Vice President. The same office manages a comprehensive COVID-19 response program that offers a range of assistance projects such as free 
-            transportation services to frontliners, free teleconsultation services nationwide, handling logistics and manpower to transmit vaccine supply from the national government task force to local government units and vaccine express sites in partnership with LGUs.
-            <br>
-            She first entered public office as representative of Camarines Sur’s third congressional district in 2013, less than a year after the death of her husband, then-Interior Secretary Jesse Robredo. Prior to this, 
-            Robredo worked as a lawyer with a focus on legal developmental work and providing legal assistance to marginalized clients.
-            <br>
-            In her lone term in the House of Representatives, Robredo principally authored three bills that were signed into law, including the Tax Incentives Management and Transparency Act.
-            <br>
-            If elected, Robredo says she will spend her first 100 days in office strengthening the country’s response to the coronavirus pandemic.`,
+            description: `Ping Lacson, 73, has served in the legislative and executive branches of the government for over 40 years. He is currently serving his third term in the Senate.
+            <br><br>
+            Lacson has authored laws such as the controversial Anti-Terrorism Act of 2020, the Philippine Identification System Act of 2018, and the Reproductive Health Act of 2011. 
+            He has long served as a watchdog on the national budget, pushing to delete pork barrel and other questionable insertions during plenary Senate debates.
+            <br><br>
+            Prior to becoming a lawmaker, he served as chief of the Philippine National Police from 1999 to 2001. He started his career in law enforcement in 1971 as a member of the 
+            infamous Metrocom Intelligence Security Group that was responsible for the disappearances and torture of activists and critics of ousted dictator Ferdinand Marcos. Lacson 
+            denies that he ever took part in the MISG's nefarious activities, maintaining that he worked on cases involving kidnap for ransom, holdups, and common crimes as a member of the unit's police branch.
+            <br><br>
+            He also launched a failed bid for the presidency in 2004.
+            <br><br>
+            If elected, Lacson vows to restore public trust in government by improving the country’s pandemic response, purging the bureaucracy of corrupt officials, and allowing local governments more autonomy.
+            <br>`,
             
-            details: `<b>Name to appear on the ballot:</b> ROBREDO, LENI<br>
-            <b>Full Name:</b> Maria Leonor (“Leni”) Gerona Robredo<br>
-            <b>Birthdate:</b> Apr. 23, 1965 (57 years old, on election day)<br>
-            <b>Birthplace:</b> Naga, Camarines Sur, Philippines<br>
-            <b>Residence:</b> Quezon City Reception House<br>
-            <b>Religion:</b> Roman Catholic<br>
-            <b>Languages Spoken:</b> Filipino, English<br>
+            details: `<b>Name to appear on the ballot:</b> LACSON, PING<br>
+            <b>Full Name:</b> Panfilo “Ping” Morena Lacson<br>
+            <b>Birthdate:</b> June 1, 1948 (73 years old on election day)<br>
+            <b>Birthplace:</b> Imus, Cavite<br>
+            <b>Residence:</b> <br>
+            <b>Religion:</b> <br>
+            <b>Languages Spoken:</b> Filipino, English, understands Bisaya<br>
             <b>Parents:</b>
               <ul>
-                <li>Antonio Gerona (1933-2013), father, former Naga City Regional Trial Court Judge</li>
-                <li>Salvacion Santo Tomas (1936-2020), mother</li>
+                <li>Buenaventura Lacson, father, jeepney driver</li>
+                <li>Maxima Morena, mother, market vendor</li>
               </ul>
             <b>Siblings:</b> 
-              <ul>
-                <li>Antonio Gerona Jr</li>
-                <li>Maria Lourdes Gerona</li>
-              </ul>
-            <b>Marital Status:</b> <i>Widow</i>; Jesse Robredo (former Interior Secretary and Local Government), 1958-2012
+            <b>Marital Status:</b> Married, Alice de Perio
             <br><b>Children:</b>
               <ul>
-                <li>Jessica Marie "Aika" Robredo</li>
-                <li>Janine Patricia "Tricia" Robredo</li>
-                <li>Jillian Therese Robredo</li>
+                <li>Reginald Lacson</li>
+                <li>Ronald Jay Lacson</li>
+                <li>Panfilo Lacson Jr.</li>
+                <li>Jeric Lacson</li>
               </ul>`,
             advocacies: `<ul>
-            <li>free legal assistance to indigent litigants or clients</li>
-            <li>improving transparency and accountability in governmental functions</li>
-            <li>promoting anti-political dynasty prohibitions</li>
-            <li>revision and overhaul of flagship war on drugs</li>
+            <li>Opposition to pork barrel allocation</li>
+            <li>Support for anti-political dynasty bills</li>
+            <li>Newfound opposition to the death penalty </li>
             </ul>`,
-            accomplishments: `<b>LEGISLATIVE ACHIEVEMENTS</b><br>
+            accomplishments: `<b>ACHIEVEMENTS IN PUBLIC OFFICE</b><br>
             <ul>
-              <li>Tax Incentives Management and Transparency Act (RA NO. 10708)</li>\
-              <li>Economic and Financial Literacy Act (RA NO. 10922)</li>
-            </ul>`,
-            achievements: `<ul>
-            <li>Angat Buhay Program</li>
-            <li>COVID-19 Response, Multi-secrtoral</li>
-            <li>Pandemic Relief Program</li>
-            <li>Improvement of the OVP</li>
-            <li>Relief Operations</li>
+              <li>R.A No. 11479 or the Anti-Terrorism Act of 2020</li>
+              <li>R.A 11469 or the Bayanihan to Heal as One Act of 2020 </li>
+              <li>R.A No. 8049 or the Anti-Hazing Act of 2018 </li>
+              <li>R.A No. 1738 or the Philippine Identification System Act of 2018 </li>
+              <li>R.A 10354 or the Reproductive Health Act of 2011 </li>
+              <li>R.A. No. 9485 or the Anti-Red Tape Act of 2007 </li>
+              <li>R.A 11517 </li>
+              <li>R.A 10349 </li>
+              <li>Coordinated government efforts </li>
             </ul>`,
             platforms: `<ul>
-            <li>Restore trust in the government</li>
-            <li>End workplace discrimination </li>
-            <li>Support the unemployed and out-of-work</li>
-            <li>Boost Strength of Philippine industries</li>
-            <li>Support small businesses </li>
+            <li>Anti-Corruption; Budget reform</li>
+            <li>Anti-insurgency</li>
+            <li>Economic Recovery; support for industries</li>
+            <li>Digitization; increase resources for automation in government agencies</li>
+            <li>Health; COVID-19 Pandemic; Economic recovery and strengthening of Health care system </li>
             </ul>`,
         }
     ]
@@ -114,30 +108,30 @@ function LacsonProfileApp() {
                 <div className="candidate-item">
                     <img src={candidate.image} alt={candidate.name} style={{width: '150px', height: '150px', borderRadius: '50%'}} className='candidate-image'/>
                     <h3 className='d-inline-block'>{candidate.name}</h3>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.description}}/>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>PERSONAL DETAILS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.details}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>MAJOR ADVOCACIES</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.advocacies}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>ACCOMPLISHMENTS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.accomplishments}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>PLATFORMS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.platforms}} />

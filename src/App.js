@@ -14,6 +14,7 @@ import IskoProfileApp from "./component/iskoProfile";
 import MannyProfileApp from "./component/mannyProfile";
 import LacsonProfileApp from "./component/lacsonProfile";
 import MarcosProfileApp from "./component/marcosProfile";
+import tipsAndTricksApp from "./component/tipsAndTricks";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/mannyProfile" Component={MannyProfileApp}></Route>
         <Route path="/lacsonProfile" Component={LacsonProfileApp}></Route>
         <Route path="/marcosProfile" Component={MarcosProfileApp}></Route>
+        <Route path="/tipsAndTricks" Component={tipsAndTricksApp}></Route>
       </Routes>
     </Router>      
     )

@@ -9,70 +9,68 @@ function MannyProfileApp() {
             id: 1,
             name: 'Manny Pacquiao',
             image: require('../img/pacquiao_1.png'),
-            description: `Leni Robredo, 56, is currently serving as the 14th vice president of the Philippines. Her office has garnered the highest audit rating from the Commission on Audit for three consecutive years (2018-2020) 
-            and has been recognized by Malacañang for its pandemic response programs across the country.
-            <br>
-            Her flagship program as vice president, Angat Buhay, is an anti-poverty program providing and coordinating support through multiple advocacy areas, namely food security and nutrition, healthcare, public education, 
-            rural development, housing, and resettlement and women empowerment. The Angat Buhay Program has mobilized at least P520 million worth of resources for the benefit of 321,000 families and 223 communities nationwide, according to the latest updates as of this writing.
-            <br>
-            Robredo has also led numerous relief operations through the Office of the Vice President. The same office manages a comprehensive COVID-19 response program that offers a range of assistance projects such as free 
-            transportation services to frontliners, free teleconsultation services nationwide, handling logistics and manpower to transmit vaccine supply from the national government task force to local government units and vaccine express sites in partnership with LGUs.
-            <br>
-            She first entered public office as representative of Camarines Sur’s third congressional district in 2013, less than a year after the death of her husband, then-Interior Secretary Jesse Robredo. Prior to this, 
-            Robredo worked as a lawyer with a focus on legal developmental work and providing legal assistance to marginalized clients.
-            <br>
-            In her lone term in the House of Representatives, Robredo principally authored three bills that were signed into law, including the Tax Incentives Management and Transparency Act.
-            <br>
-            If elected, Robredo says she will spend her first 100 days in office strengthening the country’s response to the coronavirus pandemic.`,
+            description: `Manny Pacquiao is a Philippine legislator who has served in both chambers of Congress since 2010. He first gained acclaim as a world-class champion boxer and juggled his careers as a public official and athlete until 2021 when he announced his retirement from the sport. 
+            The boxer-turned-legislator is also a preacher and founded the church Word for Everyone Ministries International, Inc. in 2012.
+            <br><br>
+            Pacquiao has consistently been noted for being the top absentee among lawmakers and for penning a relatively low number of laws and bills. He principally authored the National Bible Day Act and the Handbook for OFWs Act of 2017.
+            <br><br>
+            Citing his religious beliefs as a born-again Christian, Pacquiao has expressed support for the LGBTQ community but not same-sex marriage. In 2016, he drew ire both locally and internationally for derogatory remarks he made about the minority group.
+            <br><br>
+            He previously supported the reinstatement of the death penalty for the manufacturing and trafficking of illegal drugs but, like other candidates seeking higher office, reversed his position in Nov. 2021.
+            <br><br>
+            Pacquiao is campaigning on ridding the country of corruption, criminality, and poverty, though he has not published any concrete policy proposals as of this writing.
+            <br><br>
+            He has said that religious leaders, especially from evangelical groups, will be part of his Cabinet and anti-corruption task force if elected.`,
             
-            details: `<b>Name to appear on the ballot:</b> ROBREDO, LENI<br>
-            <b>Full Name:</b> Maria Leonor (“Leni”) Gerona Robredo<br>
-            <b>Birthdate:</b> Apr. 23, 1965 (57 years old, on election day)<br>
-            <b>Birthplace:</b> Naga, Camarines Sur, Philippines<br>
-            <b>Residence:</b> Quezon City Reception House<br>
-            <b>Religion:</b> Roman Catholic<br>
+            details: `<b>Name to appear on the ballot:</b> PACQUIAO, MANNY PACMAN<br>
+            <b>Full Name:</b> Emmanuel “Manny” Dapidran Pacquiao Sr.<br>
+            <b>Birthdate:</b> December 17, 1978 (43 years old on election day)<br>
+            <b>Birthplace:</b> Kibawe, Bukidnon Province<br>
+            <b>Residence:</b> General Santos City<br>
+            <b>Religion:</b> Evangelical Protestantism<br>
             <b>Languages Spoken:</b> Filipino, English<br>
             <b>Parents:</b>
-              <ul>
-                <li>Antonio Gerona (1933-2013), father, former Naga City Regional Trial Court Judge</li>
-                <li>Salvacion Santo Tomas (1936-2020), mother</li>
-              </ul>
+              <ol>
+                <li>Rosalio Pacquiao, father</li>
+                <li>Dionisia Dapidran, mother</li>
+              </ol>
             <b>Siblings:</b> 
               <ul>
-                <li>Antonio Gerona Jr</li>
-                <li>Maria Lourdes Gerona</li>
+                <li>Alberto “Bobby” Pacquiao</li>
               </ul>
-            <b>Marital Status:</b> <i>Widow</i>; Jesse Robredo (former Interior Secretary and Local Government), 1958-2012
+            <b>Marital Status:</b> Married (1999 - present), Jinkee Capena Jamora
             <br><b>Children:</b>
-              <ul>
-                <li>Jessica Marie "Aika" Robredo</li>
-                <li>Janine Patricia "Tricia" Robredo</li>
-                <li>Jillian Therese Robredo</li>
-              </ul>`,
+              <ol>
+                <li>Emmanuel “ Jimuel” Pacquiao Jr.</li>
+                <li>Michael Stephen Pacquiao</li>
+                <li>Mary Divine Grace “Princess” Pacquiao</li>
+                <li>Queen Elizabeth “Queenie” Pacquiao</li>
+                <li>Israel Pacquiao</li>
+              </ol>`,
             advocacies: `<ul>
-            <li>free legal assistance to indigent litigants or clients</li>
-            <li>improving transparency and accountability in governmental functions</li>
-            <li>promoting anti-political dynasty prohibitions</li>
-            <li>revision and overhaul of flagship war on drugs</li>
+            <li>Reversed stand on death penalty</li>
+            <li>Anti-SOGIE Equality Bill</li>
+            <li>Opposition to divorce</li>
+            <li>Retrieving Marcos ill-gotten wealth </li>
             </ul>`,
-            accomplishments: `<b>LEGISLATIVE ACHIEVEMENTS</b><br>
+            accomplishments: `<b>ACHIEVEMENTS IN PUBLIC OFFICE</b><br>
             <ul>
-              <li>Tax Incentives Management and Transparency Act (RA NO. 10708)</li>\
-              <li>Economic and Financial Literacy Act (RA NO. 10922)</li>
-            </ul>`,
-            achievements: `<ul>
-            <li>Angat Buhay Program</li>
-            <li>COVID-19 Response, Multi-secrtoral</li>
-            <li>Pandemic Relief Program</li>
-            <li>Improvement of the OVP</li>
-            <li>Relief Operations</li>
+              <li>R.A. 11592 or the LPG Industry Regulation Act</li>
+              <li>R.A. 11469 or the Bayanihan to heal as one act</li>
+              <li>R.A. 11163 or the National bible day act </li>
+              <li>R.A. 11227 or the Handbook for OFWs act of 2018</li>
+              <li>R.A. 11201 or the Department of human settlements and urban development act</li>
+            </ul>
+            <b>ACHIEVEMENTS IN PRIVATE SECTOR</b><br>
+            <ul>
+              <li>First boxer to be recognized as four-time welterweight world champion </li>
+              <li>Founded word for everyone ministries international inc. (a church in general santos city)</li>
+              <li>Appeared in films and TV shows in both ABS-CBN and GMA network </li>
+              <li>Joined the Philippine Basketball Association (PBA) as playing coach of Kia Motors Basketball team</li>
             </ul>`,
             platforms: `<ul>
-            <li>Restore trust in the government</li>
-            <li>End workplace discrimination </li>
-            <li>Support the unemployed and out-of-work</li>
-            <li>Boost Strength of Philippine industries</li>
-            <li>Support small businesses </li>
+            <li>COVID-19 Pandemic; efficient response</li>
+            <li>Anti-corruption</li>
             </ul>`,
         }
     ]
@@ -114,30 +112,30 @@ function MannyProfileApp() {
                 <div className="candidate-item">
                     <img src={candidate.image} alt={candidate.name} style={{width: '150px', height: '150px', borderRadius: '50%'}} className='candidate-image'/>
                     <h3 className='d-inline-block'>{candidate.name}</h3>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.description}}/>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>PERSONAL DETAILS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.details}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>MAJOR ADVOCACIES</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.advocacies}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>ACCOMPLISHMENTS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.accomplishments}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className="mb-3">
                 <Card.Body className='mb-4'>
                   <Card.Title>PLATFORMS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.platforms}} />

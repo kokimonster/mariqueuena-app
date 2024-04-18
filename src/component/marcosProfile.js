@@ -9,70 +9,63 @@ function MarcosProfileApp() {
             id: 1,
             name: 'Bong Bong Marcos',
             image: require('../img/marcos_1.png'),
-            description: `Leni Robredo, 56, is currently serving as the 14th vice president of the Philippines. Her office has garnered the highest audit rating from the Commission on Audit for three consecutive years (2018-2020) 
-            and has been recognized by Malacañang for its pandemic response programs across the country.
-            <br>
-            Her flagship program as vice president, Angat Buhay, is an anti-poverty program providing and coordinating support through multiple advocacy areas, namely food security and nutrition, healthcare, public education, 
-            rural development, housing, and resettlement and women empowerment. The Angat Buhay Program has mobilized at least P520 million worth of resources for the benefit of 321,000 families and 223 communities nationwide, according to the latest updates as of this writing.
-            <br>
-            Robredo has also led numerous relief operations through the Office of the Vice President. The same office manages a comprehensive COVID-19 response program that offers a range of assistance projects such as free 
-            transportation services to frontliners, free teleconsultation services nationwide, handling logistics and manpower to transmit vaccine supply from the national government task force to local government units and vaccine express sites in partnership with LGUs.
-            <br>
-            She first entered public office as representative of Camarines Sur’s third congressional district in 2013, less than a year after the death of her husband, then-Interior Secretary Jesse Robredo. Prior to this, 
-            Robredo worked as a lawyer with a focus on legal developmental work and providing legal assistance to marginalized clients.
-            <br>
-            In her lone term in the House of Representatives, Robredo principally authored three bills that were signed into law, including the Tax Incentives Management and Transparency Act.
-            <br>
-            If elected, Robredo says she will spend her first 100 days in office strengthening the country’s response to the coronavirus pandemic.`,
+            description: `Ferdinand “Bongbong” Marcos Jr., 64, son and namesake of the late ousted dictator, was elected unopposed into vice gubernatorial seats in Ilocos Norte at the height of his father’s 
+            regime in 1980, and eventually into congressional seats representing the same province after his family’s return to the Philippines in 1991. He also served as a senator from 2010 to 2016 before losing a bid for 
+            higher office to Vice President Leni Robredo in the 2016 elections.
+            <br><br>
+            In at least three civil cases involving the successful recovery of the Marcos family’s ill-gotten wealth, Marcos Jr. is impleaded as a defendant. The Presidential Commission on Good Government, 
+            the quasi-judicial agency tasked with recovering ill-gotten wealth accumulated by the Marcos family and its associates, 
+            has so far reclaimed P174.2 billion as of March 2021 — some of which went to compensating victims of human rights abuse during the Martial Law era. Another P125.9 billion has yet to be recovered and remains under litigation. 
+            <br><br>
+            The commission has said that the younger Marcos barred government attempts to take back the money stolen by his family, though Marcos claims that he never possessed or even benefitted from ill-gotten wealth.
+            <br><br>
+            Marcos is campaigning on improving the country's pandemic response and continuing the Duterte administration's anti-insurgency campaign as well as its bloody campaign against illegal drugs but with a focus on prevention, education, and rehabilitation.
+            <br><br>
+            His tandem with Davao City Mayor Sara Duterte, the incumbent president's daughter, is formally backed by several other heavyweight political clans including those led by former Presidents Gloria Macapagal-Arroyo and Joseph Estrada.
+            <br>`,
             
-            details: `<b>Name to appear on the ballot:</b> ROBREDO, LENI<br>
-            <b>Full Name:</b> Maria Leonor (“Leni”) Gerona Robredo<br>
-            <b>Birthdate:</b> Apr. 23, 1965 (57 years old, on election day)<br>
-            <b>Birthplace:</b> Naga, Camarines Sur, Philippines<br>
-            <b>Residence:</b> Quezon City Reception House<br>
+            details: `<b>Name to appear on the ballot:</b> MARCOS, BONGBONG <br>
+            <b>Full Name:</b> Ferdinand “Bongbong” Romualdez Marcos Jr.<br>
+            <b>Birthdate:</b> Sept. 13, 1957 (64 years old on Election day)<br>
+            <b>Birthplace:</b> Sta. Mesa, Manila, Philippines<br>
+            <b>Residence:</b> n/a<br>
             <b>Religion:</b> Roman Catholic<br>
             <b>Languages Spoken:</b> Filipino, English<br>
             <b>Parents:</b>
-              <ul>
-                <li>Antonio Gerona (1933-2013), father, former Naga City Regional Trial Court Judge</li>
-                <li>Salvacion Santo Tomas (1936-2020), mother</li>
-              </ul>
+              <ol>
+                <li>Ferdinand Marcos Sr. (1917-1989), father</li>
+                <li>Imelda Remedios Visitacion Trinidad Romualdez (1929), mother</li>
+              </ol>
             <b>Siblings:</b> 
-              <ul>
-                <li>Antonio Gerona Jr</li>
-                <li>Maria Lourdes Gerona</li>
-              </ul>
-            <b>Marital Status:</b> <i>Widow</i>; Jesse Robredo (former Interior Secretary and Local Government), 1958-2012
+              <ol>
+                <li> Maria Imelda Josefa “Imee” Romualdez Marcos</li>
+                <li> Irene Romualdez Marcos-Araneta</li>
+                <li> Aimee Romualdez Marcos</li>
+              </ol>
+            <b>Marital Status:</b>Married; Louise Cacho Araneta, Lawyer, 1993 to present
             <br><b>Children:</b>
-              <ul>
-                <li>Jessica Marie "Aika" Robredo</li>
-                <li>Janine Patricia "Tricia" Robredo</li>
-                <li>Jillian Therese Robredo</li>
-              </ul>`,
+              <ol>
+                <li>Ferdinand Alexander Marcos, </li>
+                <li>Joseph Simon Marcos</li>
+                <li>William Vincent Marcos</li>
+              </ol>`,
             advocacies: `<ul>
-            <li>free legal assistance to indigent litigants or clients</li>
-            <li>improving transparency and accountability in governmental functions</li>
-            <li>promoting anti-political dynasty prohibitions</li>
-            <li>revision and overhaul of flagship war on drugs</li>
+            <li>Limiting public release of SALNs</li>
+            <li>Marcos legacy</li>
             </ul>`,
-            accomplishments: `<b>LEGISLATIVE ACHIEVEMENTS</b><br>
+            accomplishments: `<b>ACHIEVEMENTS IN PUBLIC OFFICE</b><br>
             <ul>
-              <li>Tax Incentives Management and Transparency Act (RA NO. 10708)</li>\
-              <li>Economic and Financial Literacy Act (RA NO. 10922)</li>
-            </ul>`,
-            achievements: `<ul>
-            <li>Angat Buhay Program</li>
-            <li>COVID-19 Response, Multi-secrtoral</li>
-            <li>Pandemic Relief Program</li>
-            <li>Improvement of the OVP</li>
-            <li>Relief Operations</li>
+              <li>TR.A. 108841 or the Balanced Housing Development program amendments</li>
+              <li>R.A. 10821 or the Children’s Emergency Relief and protection act</li>
+              <li>R.A. 10586 or the Anti-drunk and Drugged Driving Act of 2012</li>
+              <li>R.A. 10175 or the cybercrime prevention act of 2011</li>
             </ul>`,
             platforms: `<ul>
-            <li>Restore trust in the government</li>
-            <li>End workplace discrimination </li>
-            <li>Support the unemployed and out-of-work</li>
-            <li>Boost Strength of Philippine industries</li>
-            <li>Support small businesses </li>
+            <li>Health and COVID-19 Pandemic; Intermanagement of the government</li>
+            <li>Anti-insurgency </li>
+            <li>Law and order; continuation of war on drugs</li>
+            <li>Environment and climate change; forest conservation</li>
+            <li>Disaster risk reduction and management; more evacuation centers and a more proactive approach</li>
             </ul>`,
         }
     ]
@@ -114,30 +107,30 @@ function MarcosProfileApp() {
                 <div className="candidate-item">
                     <img src={candidate.image} alt={candidate.name} style={{width: '150px', height: '150px', borderRadius: '50%'}} className='candidate-image'/>
                     <h3 className='d-inline-block'>{candidate.name}</h3>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.description}}/>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>PERSONAL DETAILS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.details}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>MAJOR ADVOCACIES</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.advocacies}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>ACCOMPLISHMENTS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.accomplishments}} />
                 </Card.Body>
               </Card>
-              <Card>
+              <Card className='mb-3'>
                 <Card.Body className='mb-4'>
                   <Card.Title>PLATFORMS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.platforms}} />

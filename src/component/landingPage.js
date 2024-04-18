@@ -20,7 +20,7 @@ function LandingPageApp() {
         navigate('/candidatesProfile');
         break;
       case 'tipsAndTricks':
-        //handle tips and tricks action
+        navigate('/tipsAndTricks')
         break;
         default:
           break;

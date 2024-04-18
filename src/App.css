@@ -40,7 +40,7 @@
 }
 
 .bg {
-  height: 100vh;
+  height: 100%;
   opacity: 0.9;
   background-image: linear-gradient(90deg, rgba(35,16,153,0.8326039888611695) 0%, rgba(41,85,175,0.95) 0%);
   background-size: cover;
@@ -128,4 +128,9 @@ body.swal-shown > [aria-hidden='true'] {
   background-color: '#fff'; 
   box-shadow: '0 0 10px rgba(0, 0, 0, 0.1)';
 
+}
+
+.text-on-right{
+  display: flex;
+  justify-content: flex-end;
 }
