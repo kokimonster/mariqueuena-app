@@ -5,7 +5,7 @@ import axios from 'axios';
 import Validation from './loginValidation'; 
 import Swal from 'sweetalert2';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import ResetPassword from './resetPassword';
+import ResetPassword from './sendCodeForm';
 
 
 function LoginPage({show, handleClose}) {
@@ -19,6 +19,7 @@ function LoginPage({show, handleClose}) {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -117,66 +118,5 @@ function LoginPage({show, handleClose}) {
       </>
     );
   }
-
-//   return (
-
-//     <Modal className="modal" show={show} onHide={handleClose}>
-//       <Modal.Header closeButton>
-//         <Modal.Title>Login Form</Modal.Title>
-//       </Modal.Header>
-
-//       <ModalBody>
-//         <Form className="formStyle" onSubmit={handleSubmit} action = "">
-//             <Container>
-//               <Row>
-//                 <Form.Group as={Col} className="mb-3" controlId="formBasicEmail">
-//                   <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
-//                   <Form.Control 
-//                     type="email" 
-//                     placeholder='Enter Email' 
-//                     name= 'email' 
-//                     onChange = {handleInput}/>
-//                     {/* onChange={(e) => setEmail(e.target.value)} */}
-//                     {errors.email && <span className='text-danger'> {errors.email}</span>}
-//                 </Form.Group>
-//               </Row>
-//               <Row>
-//                   <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
-//                     <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
-//                       <InputGroup>
-//                         <Form.Control 
-//                           type={showPassword ? 'text' : 'password'}
-//                           placeholder='Enter Password' 
-//                           name = 'password' 
-//                           onChange = {handleInput} />
-//                         {/* onChange={(e) => setPassword(e.target.value)}          */}
-//                         <Button variant="outline-secondary" onClick={() => togglePasswordVisibility('password')}>
-//                               {showPassword ? <BsEyeSlash /> : <BsEye />}
-//                         </Button>
-//                       </InputGroup>
-//                         <Row>
-//                             <Col>
-//                               <p style={{cursor: 'pointer', color: 'blue', fontSize: '12px', marginLeft: '10px'}}
-//                                 onClick={toggleForgotPasswordModal}>
-//                                   Forgot Password?
-//                               </p>
-//                             </Col>
-//                         </Row>
-//                   </Form.Group>
-//               </Row>
-//               <Row>
-//                 <Col className='text-center' xs={12}>
-//                   <Button style={{ width:'150px'}}variant="success" id="loginBtn" type="submit"> 
-//                     Login
-//                   </Button>
-//                 </Col>
-//               </Row>
-//             </Container>
-//           </Form>
-//         </ModalBody>
-//     </Modal>
-    
-//   );
-// }
 
 export default LoginPage;
