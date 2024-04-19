@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {Form,Button, Container, Row, Col, Modal, ModalBody} from 'react-bootstrap';
+import {Form,Button, Container, Row, Col, Modal, ModalBody, InputGroup} from 'react-bootstrap';
 import {Link, Navigate, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import Validation from './loginValidation';
+import Validation from './loginValidation'; 
 import Swal from 'sweetalert2';
-
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import ResetPassword from './resetPassword';
 
 
 function LoginPage({show, handleClose}) {
@@ -14,6 +15,10 @@ function LoginPage({show, handleClose}) {
       password: ''
     })  
 
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -21,6 +26,17 @@ function LoginPage({show, handleClose}) {
       setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
     };
 
+    const toggleForgotPasswordModal = () => {
+      setShowForgotPasswordModal(!showForgotPasswordModal);
+    };
+    
+    const togglePasswordVisibility = (field) => {
+      if (field === 'password') {
+          setShowPassword(!showPassword);
+      } else if (field === 'confirmPassword') {
+          setShowConfirmPassword(!showConfirmPassword);
+      }
+  };
     const handleSubmit = (event) => {
       event.preventDefault();
       setErrors(Validation(values));
@@ -40,52 +56,127 @@ function LoginPage({show, handleClose}) {
       }
     };
 
-  return (
-
-    <Modal className="modal" show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Login Form</Modal.Title>
-      </Modal.Header>
-
-      <ModalBody>
-        <Form className="formStyle" onSubmit={handleSubmit} action = "">
-            <Container>
+    return (
+      <>
+        <Modal className="modal" show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Login Form</Modal.Title>
+          </Modal.Header>
+  
+          <ModalBody>
+            <Form className="formStyle" onSubmit={handleSubmit} action="">
               <Row>
                 <Form.Group as={Col} className="mb-3" controlId="formBasicEmail">
-                  <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
-                  <Form.Control 
-                    type="email" 
-                    placeholder='Enter Email' 
-                    name= 'email' 
-                    onChange = {handleInput}/>
-                    {/* onChange={(e) => setEmail(e.target.value)} */}
-                    {errors.email && <span className='text-danger'> {errors.email}</span>}
+                  <Form.Label style={{ fontWeight: 'bold' }}>Email Address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder='Enter Email'
+                    name='email'
+                    onChange={handleInput} />
+                  {errors.email && <span className='text-danger'> {errors.email}</span>}
                 </Form.Group>
               </Row>
               <Row>
-                  <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
-                    <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
-                      <Form.Control 
-                        type="password" 
-                        placeholder='Enter Password' 
-                        name = 'password' 
-                        onChange = {handleInput} />
-                      {/* onChange={(e) => setPassword(e.target.value)} */}         
-                      {errors.password && <span className='text-danger'> {errors.password}</span>}
-                  </Form.Group>
-              </Row>  
+                <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
+                  <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder='Enter Password'
+                      name='password'
+                      onChange={handleInput} />
+                    <Button variant="outline-secondary" onClick={togglePasswordVisibility}>
+                      {showPassword ? <BsEyeSlash /> : <BsEye />}
+                    </Button>
+                  </InputGroup>
+                  <Row>
+                    <Col>
+                      <p
+                        style={{ cursor: 'pointer', color: 'blue', fontSize: '12px', marginLeft: '10px', textAlign: 'left', display: 'inline'}}
+                        onClick = {() => {{toggleForgotPasswordModal(); handleClose(); }}}
+                      >
+                        Forgot Password?
+                      </p>
+                    </Col>
+                  </Row>
+                </Form.Group>
+              </Row>
               <Row>
                 <Col className='text-center' xs={12}>
-                  <Button style={{ width:'150px'}}variant="success" id="loginBtn" type="submit"> 
+                  <Button style={{ width: '150px' }} variant="success" id="loginBtn" type="submit">
                     Login
                   </Button>
                 </Col>
               </Row>
-            </Container>
-          </Form>
-        </ModalBody>
-    </Modal>
-  );
-}
+            </Form>
+          </ModalBody>
+        </Modal>
+  
+        {/* ResetPassword Modal */}
+        <ResetPassword show={showForgotPasswordModal} handleClose={toggleForgotPasswordModal} />
+      </>
+    );
+  }
+
+//   return (
+
+//     <Modal className="modal" show={show} onHide={handleClose}>
+//       <Modal.Header closeButton>
+//         <Modal.Title>Login Form</Modal.Title>
+//       </Modal.Header>
+
+//       <ModalBody>
+//         <Form className="formStyle" onSubmit={handleSubmit} action = "">
+//             <Container>
+//               <Row>
+//                 <Form.Group as={Col} className="mb-3" controlId="formBasicEmail">
+//                   <Form.Label style={{ fontWeight: 'bold' }}>Email address</Form.Label>
+//                   <Form.Control 
+//                     type="email" 
+//                     placeholder='Enter Email' 
+//                     name= 'email' 
+//                     onChange = {handleInput}/>
+//                     {/* onChange={(e) => setEmail(e.target.value)} */}
+//                     {errors.email && <span className='text-danger'> {errors.email}</span>}
+//                 </Form.Group>
+//               </Row>
+//               <Row>
+//                   <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
+//                     <Form.Label style={{ fontWeight: 'bold' }}>Password</Form.Label>
+//                       <InputGroup>
+//                         <Form.Control 
+//                           type={showPassword ? 'text' : 'password'}
+//                           placeholder='Enter Password' 
+//                           name = 'password' 
+//                           onChange = {handleInput} />
+//                         {/* onChange={(e) => setPassword(e.target.value)}          */}
+//                         <Button variant="outline-secondary" onClick={() => togglePasswordVisibility('password')}>
+//                               {showPassword ? <BsEyeSlash /> : <BsEye />}
+//                         </Button>
+//                       </InputGroup>
+//                         <Row>
+//                             <Col>
+//                               <p style={{cursor: 'pointer', color: 'blue', fontSize: '12px', marginLeft: '10px'}}
+//                                 onClick={toggleForgotPasswordModal}>
+//                                   Forgot Password?
+//                               </p>
+//                             </Col>
+//                         </Row>
+//                   </Form.Group>
+//               </Row>
+//               <Row>
+//                 <Col className='text-center' xs={12}>
+//                   <Button style={{ width:'150px'}}variant="success" id="loginBtn" type="submit"> 
+//                     Login
+//                   </Button>
+//                 </Col>
+//               </Row>
+//             </Container>
+//           </Form>
+//         </ModalBody>
+//     </Modal>
+    
+//   );
+// }
 
 export default LoginPage;

@@ -7,7 +7,6 @@ import PasswordForm from './PasswordForm';
 
 function RegistrationPage({ show, handleClose }) {
 
-    //IMAGE VALIDATION
     const [errors, setErrors] = useState({});
     const [file,setFile] = useState();
 
@@ -199,42 +198,6 @@ function RegistrationPage({ show, handleClose }) {
                     text: "An error occurred during registration.",
                 });
             });
-
-            // //Uploading of Image
-            // const formData = new FormData();
-            // formData.append('idType', values.idType);
-            // formData.append('idImage', file);
-            // formData.append('idNumber', values.idNumber);
-            // console.log(formData);
-            
-            // axios.post('http://localhost:3031/upload', formData)
-            // .then(res => {console.log(res)})
-            // .catch(err => console.log(err));
-
-            // // Submission of Basic Info Form
-            // axios.post('http://localhost:3031/registrationPage', values)
-            // .then(res => {
-            //     if (res.data.error) {
-            //     // Registration error, show SweetAlert error
-            //     Swal.fire({
-            //         icon: "error",
-            //         title: "Registration Error",
-            //         text: res.data.error,
-            //     });
-            //     } else {
-            //     // Registration successful, close the modal
-            //     handleClose();
-            //     }
-            // })
-            // .catch(err => {
-            //     console.log(err);
-            //     // Handle other errors if needed
-            //     Swal.fire({
-            //     icon: "error",
-            //     title: "Registration Error",
-            //     text: "An error occurred during registration.",
-            //     });
-            // });
         }
       };
 
