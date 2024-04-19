@@ -175,6 +175,11 @@ function RegistrationPage({ show, handleClose }) {
                                 });
                             } else {
                                 // Both basic info form and image upload successful
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: 'You many now login',
+                                });
                                 handleClose(); // Close modal or perform other actions
                             }
                         })
