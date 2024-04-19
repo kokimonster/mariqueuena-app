@@ -45,7 +45,7 @@ function CandidatesProfileApp() {
 
     return (
       <div className="homePageStyle">
-        <div className="bg">
+        <div className="bg-candidate-list">
           <Navbar className="justify-content-between mb-0" style={{ backgroundColor: "#231099" }} sticky='top'>
             <Container>
               <Navbar.Brand href="/">

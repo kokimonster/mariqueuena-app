@@ -123,26 +123,46 @@ function tipsAndTricksApp() {
                 {tips.map(tip => (
             <Col key={tip.id} className='mb-5'>
                 <div className="tip-item">
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                     <Card.Title className='text-center'>AM I ELIGIBLE TO VOTE?</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: tip.eligible}}/>
                   <Card.Text><div className='text-on-right'  dangerouslySetInnerHTML={{ __html: tip.sk}}/></Card.Text> 
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(35, 16, 153, 1)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title className='text-center'>REGISTRATION</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: tip.registration}} />
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(35, 16, 153, 1)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title className='text-center'>REGISTRATION PROCESS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: tip.process}} />
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title className='text-center'>CHOOSING CANDIDATE</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: tip.candidate}} />

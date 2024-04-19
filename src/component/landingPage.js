@@ -56,52 +56,68 @@ function LandingPageApp() {
               </Navbar.Brand>
           </Container>
         </Navbar>
-        <div>
+        <div style={{height: '100px'}}>
             <h1 className="mb-4" style={{textAlign: 'center', color: 'black', backgroundColor: 'rgb(255,255,255,0.59)', padding: '20px'}}>
                 MABUHAY! WELCOME TO MARIQUEUENA
             </h1>
           </div>
-        <Container className="d-flex align-items-center justify-content-center mt-4">
+        <Container className="d-flex align-items-center justify-content-center mt-5">
         <Row>
           <Col>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 215, 0, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              width: '220px',
+              height: '100px',
+              margin: '0 auto',
+              padding: '20px' 
             }} onClick={() => handleCardClick('joinQueue')}>
-              <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                <Card.Title>Join Queue</Card.Title>
+              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+                <Card.Title style={{fontSize: '2em'}}>Join Queue</Card.Title>
               </Card.Body>
             </Card>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 255, 255, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              width: '220px',
+              height: '100px',
+              margin: '0 auto',
+              padding: '5px' 
             }} onClick={() => handleCardClick('latestNews')}>
-              <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                <Card.Title>Find out the latest news</Card.Title>
+              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+                <Card.Title style={{fontSize: '2em'}}>Find out the latest news</Card.Title>
               </Card.Body>
             </Card>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 215, 0, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              width: '220px',
+              height: '100px',
+              margin: '0 auto',
+              padding: '8px' 
             }} onClick={() => handleCardClick('candidatesProfile')}>
-              <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                <Card.Title>Candidates Profile</Card.Title>
+              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+                <Card.Title style={{fontSize: '2em'}}>Candidates Profile</Card.Title>
               </Card.Body>
             </Card>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 255, 255, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+              width: '220px',
+              height: '100px',
+              margin: '0 auto',
+              padding: '17px'  
             }} onClick={() => handleCardClick('tipsAndTricks')}>
-              <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                <Card.Title>Tips and Tricks</Card.Title>
+              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+                <Card.Title style={{fontSize: '2em'}}>Tips and Tricks</Card.Title>
               </Card.Body>
             </Card>
           </Col>

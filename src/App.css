@@ -44,8 +44,18 @@
   opacity: 0.9;
   background-image: linear-gradient(90deg, rgba(35,16,153,0.8326039888611695) 0%, rgba(41,85,175,0.95) 0%);
   background-size: cover;
-  background-position: center top;
-  background-repeat: repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-candidate-list {
+  height: 100vh;
+  opacity: 0.9;
+  background-image: linear-gradient(90deg, rgba(35,16,153,0.8326039888611695) 0%, rgba(41,85,175,0.95) 0%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 

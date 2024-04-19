@@ -98,25 +98,45 @@ function LeodyProfileApp() {
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.description}}/>
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title>PERSONAL DETAILS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.details}} />
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(35, 16, 153, 1)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title>MAJOR ADVOCACIES</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.advocacies}} />
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(35, 16, 153, 1)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title>ACCOMPLISHMENTS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.accomplishments}} />
                 </Card.Body>
               </Card>
-              <Card className="mb-3">
+              <Card className="mb-3" style={{ 
+              backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+              color: '#FFFFFF', 
+              borderRadius: '15px', 
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)'               
+            }}>
                 <Card.Body className='mb-4'>
                   <Card.Title>PLATFORMS</Card.Title>
                   <Card.Text dangerouslySetInnerHTML={{ __html: candidate.platforms}} />
