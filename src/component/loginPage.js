@@ -15,13 +15,16 @@ function LoginPage({show, handleClose}) {
       password: ''
     })  
 
-
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+
+    const emailData = {
+      email: values.email
+    };
 
     const handleInput = (event) => {
       setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -41,11 +44,22 @@ function LoginPage({show, handleClose}) {
     const handleSubmit = (event) => {
       event.preventDefault();
       setErrors(Validation(values));
-      if(errors.email === "" && errors.password === "") {
         axios.post('http://localhost:3031/login', values)
         .then(res => {
           if(res.data === "Success") {
-            navigate('/landingPage');
+            axios.post('http://localhost:3031/users', emailData)
+            .then(res => {
+              console.log(res);
+              const isAdmin = res.data.isAdmin;
+              navigate('/landingPage', { state: { isAdmin } }); // Pass isAdmin status to landing page
+            })
+            .catch(error => {
+              Swal.fire({
+                icon: "error",
+                title: "Error getting admin info",
+                text: error
+              });
+            })
           } else {
             Swal.fire({
               icon: "error",
@@ -54,14 +68,13 @@ function LoginPage({show, handleClose}) {
             });
           }
         })
-      }
     };
 
     return (
       <>
         <Modal className="modal" show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Login Form</Modal.Title>
+            <Modal.Title>Login</Modal.Title>
           </Modal.Header>
   
           <ModalBody>
@@ -74,7 +87,6 @@ function LoginPage({show, handleClose}) {
                     placeholder='Enter Email'
                     name='email'
                     onChange={handleInput} />
-                  {errors.email && <span className='text-danger'> {errors.email}</span>}
                 </Form.Group>
               </Row>
               <Row>
@@ -104,7 +116,7 @@ function LoginPage({show, handleClose}) {
               </Row>
               <Row>
                 <Col className='text-center' xs={12}>
-                  <Button style={{ width: '150px' }} variant="success" id="loginBtn" type="submit">
+                  <Button style={{ width: '150px' }}  id="loginBtn" type="submit">
                     Login
                   </Button>
                 </Col>
