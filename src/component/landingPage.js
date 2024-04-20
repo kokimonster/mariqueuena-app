@@ -4,6 +4,8 @@ import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../App.css';
+import axios from 'axios';
+import VerificationToast from './admin_component/VerificationToast';
 
 
 function LandingPageApp() {
@@ -11,18 +13,50 @@ function LandingPageApp() {
   const isAdmin = location.state.isAdmin;
   const navigate = useNavigate();
   const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
+  const [verificationToastShow, setVerificationToastShow] = useState(false);
 
   useEffect(() => {
     if (isAdmin && !isAdminNotificationShown) {
-      Swal.fire({
-        icon: 'success',
-        title: 'You are an admin!',
-        timer: 3000,
-        showConfirmButton: false
-      });
-      setIsAdminNotificationShown(true);
+      axios.post('http://localhost:3031/verify-user')
+        .then(res => {
+          console.log("Data Returned: ", res.data);
+          if (res.data.length > 0) {
+            Swal.fire({
+              icon: 'success',
+              title: 'You are an admin!',
+              timer: 3000,
+              showConfirmButton: false
+            });
+            setIsAdminNotificationShown(true);
+            setVerificationToastShow(true);
+
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }, [isAdmin, isAdminNotificationShown]);
+
+  // useEffect(() => {
+  //   if (isAdmin && !isAdminNotificationShown) {
+  //     axios.post('http://localhost:3031/verify-user')
+  //     .then(res => {
+  //       console.log("Data Returned: " + res.data);
+  //       setVerificationToastShow(true);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'You are an admin!',
+  //       timer: 3000,
+  //       showConfirmButton: false
+  //     });
+  //     setIsAdminNotificationShown(true);
+  //   }
+  // }, [isAdmin, isAdminNotificationShown]);
 
   
   const handleCardClick = (action) => {
@@ -77,8 +111,9 @@ function LandingPageApp() {
                 MABUHAY! WELCOME TO MARIQUEUENA
             </h1>
           </div>
+          <VerificationToast show={verificationToastShow} setShow={setVerificationToastShow}/> 
         <Container className="d-flex align-items-center justify-content-center mt-5">
-        <Row >
+        <Row>
           <Col>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 215, 0, 0.57)', 

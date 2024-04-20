@@ -18,9 +18,6 @@ import tipsAndTricksApp from "./component/tipsAndTricks";
 
 
 function App() {
-
-  const [data, setData] = useState([])
-
     useEffect(()=>{
       fetch('http://localhost:3031/')
       .then(res => res.json())
