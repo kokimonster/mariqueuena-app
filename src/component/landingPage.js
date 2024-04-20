@@ -1,31 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import '../App.css';
 
 
 function LandingPageApp() {
+  const location = useLocation();
+  const isAdmin = location.state.isAdmin;
   const navigate = useNavigate();
+  const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
+
+  useEffect(() => {
+    if (isAdmin && !isAdminNotificationShown) {
+      Swal.fire({
+        icon: 'success',
+        title: 'You are an admin!',
+        text: 'Welcome to the admin section.',
+        timer: 3000,
+        showConfirmButton: false
+      });
+      setIsAdminNotificationShown(true);
+    }
+  }, [isAdmin, isAdminNotificationShown]);
 
   const handleCardClick = (action) => {
     switch(action) {
       case 'joinQueue':
-        navigate('/queuePage');
+        navigate('/queuePage', { state: { isAdmin } });
         break;
       case 'latestNews':
         //handle news action
         break;
       case 'candidatesProfile':
-        navigate('/candidatesProfile');
+        navigate('/queuePage', { state: { isAdmin } });
         break;
       case 'tipsAndTricks':
-        navigate('/tipsAndTricks')
+        navigate('/queuePage', { state: { isAdmin } });
         break;
         default:
           break;
     }
   };
+
+  
 
   return(
     <div className="landingPageStyle">
@@ -62,15 +81,17 @@ function LandingPageApp() {
             </h1>
           </div>
         <Container className="d-flex align-items-center justify-content-center mt-5">
-        <Row>
+        <Row xs={1} md={2} lg={3} className="g-4" >
           <Col>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 215, 0, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              width: '100%',
+              maxWidth: '350px',
+              height: '100%',
+              maxHeight: '120px',
               margin: '0 auto',
               padding: '20px' 
             }} onClick={() => handleCardClick('joinQueue')}>
@@ -83,12 +104,14 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              width: '100%',
+              maxWidth: '350px',
+              height: '100%',
+              maxHeight: '120px',
               margin: '0 auto',
               padding: '5px' 
             }} onClick={() => handleCardClick('latestNews')}>
-              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
+              <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>  
                 <Card.Title style={{fontSize: '2em'}}>Find out the latest news</Card.Title>
               </Card.Body>
             </Card>
@@ -97,8 +120,10 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              width: '100%',
+              maxWidth: '350px',
+              height: '100%',
+              maxHeight: '120px',
               margin: '0 auto',
               padding: '8px' 
             }} onClick={() => handleCardClick('candidatesProfile')}>
@@ -111,8 +136,10 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              width: '100%',
+              maxWidth: '350px',
+              height: '100%',
+              maxHeight: '120px',
               margin: '0 auto',
               padding: '17px'  
             }} onClick={() => handleCardClick('tipsAndTricks')}>
