@@ -62,17 +62,19 @@ function LandingPageApp() {
             </h1>
           </div>
         <Container className="d-flex align-items-center justify-content-center mt-5">
-        <Row>
+        <Row >
           <Col>
             <Card className="mt-4 mb-4" style={{ 
               backgroundColor: 'rgba(255, 215, 0, 0.57)', 
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              maxWidth: '350px',
+              maxHeight: '120px',
+              width: '100%',
+              height:'100%',
               margin: '0 auto',
-              padding: '20px' 
+              padding: '30px' 
             }} onClick={() => handleCardClick('joinQueue')}>
               <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
                 <Card.Title style={{fontSize: '2em'}}>Join Queue</Card.Title>
@@ -83,10 +85,12 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              maxWidth: '350px',
+              maxHeight: '120px',
+              width: '100%',
+              height:'100%',
               margin: '0 auto',
-              padding: '5px' 
+              padding: '30px' 
             }} onClick={() => handleCardClick('latestNews')}>
               <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
                 <Card.Title style={{fontSize: '2em'}}>Find out the latest news</Card.Title>
@@ -97,10 +101,12 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              maxWidth: '350px',
+              maxHeight: '120px',
+              width: '100%',
+              height:'100%',
               margin: '0 auto',
-              padding: '8px' 
+              padding: '30px' 
             }} onClick={() => handleCardClick('candidatesProfile')}>
               <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
                 <Card.Title style={{fontSize: '2em'}}>Candidates Profile</Card.Title>
@@ -111,10 +117,12 @@ function LandingPageApp() {
               color: '#000000', 
               borderRadius: '15px', 
               boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              width: '220px',
-              height: '100px',
+              maxWidth: '350px',
+              maxHeight: '120px',
+              width: '100%',
+              height:'100%',
               margin: '0 auto',
-              padding: '17px'  
+              padding: '30px'  
             }} onClick={() => handleCardClick('tipsAndTricks')}>
               <Card.Body className='text-center' style={{ fontWeight: 'bold', marginBottom: '20px' }}>
                 <Card.Title style={{fontSize: '2em'}}>Tips and Tricks</Card.Title>

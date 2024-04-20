@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const CountDownTimer =  ({peopleInLine}) => {
-  const [timeLeft, setTimeLeft] = useState(null);
-  const [estimatedTime, setEstimatedTime] = useState(null);
+const CountDownTimer = ({ peopleInLine, estimatedTime }) => {
+  const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
-    const initialTime = calculateEstimatedTime();
-    setTimeLeft(initialTime);
+    if (estimatedTime !== null) {
+      setTimeLeft(estimatedTime * 60); // Convert estimated time from minutes to seconds
+    }
+  }, [estimatedTime]);
 
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
         if (prevTime > 0) {
@@ -20,29 +22,7 @@ const CountDownTimer =  ({peopleInLine}) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
-
-  const calculateEstimatedTime = () => {
-    if (peopleInLine.length === 0) {
-      return null;
-    }
-
-    const baseDuration = 3;
-    const incrementPerUser = 3;
-    const numUsers = peopleInLine.length;
-
-    let calculatedTime = numUsers * incrementPerUser;
-    console.log(`Calculated Time: ${Math.max(calculatedTime, 1)}`);
-
-    return Math.max(calculatedTime, 1);
-  };
-
-  useEffect(() => {
-    const estimatedTime = calculateEstimatedTime();
-    console.log(`Initial Estimated Time: ${calculateEstimatedTime()}`)
-    setEstimatedTime(estimatedTime);
-
-  }, []);
+  }, [timeLeft]);
 
   const formatTime = () => {
     const minutes = Math.floor(timeLeft / 60);
