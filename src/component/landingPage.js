@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../App.css';
 import axios from 'axios';
-import VerificationToast from './admin_component/VerificationToast';
 
 
 function LandingPageApp() {
@@ -13,7 +12,6 @@ function LandingPageApp() {
   const isAdmin = location.state.isAdmin;
   const navigate = useNavigate();
   const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
-  const [verificationToastShow, setVerificationToastShow] = useState(false);
 
   useEffect(() => {
     if (isAdmin && !isAdminNotificationShown) {
@@ -22,14 +20,44 @@ function LandingPageApp() {
           console.log("Data Returned: ", res.data);
           if (res.data.length > 0) {
             Swal.fire({
-              icon: 'success',
-              title: 'You are an admin!',
-              timer: 3000,
-              showConfirmButton: false
+              title: 'Users to Verify',
+              icon: 'info',
+              text: 'You have pending user verifications. Please proceed to verify them.',
+              showCancelButton: true,
+              confirmButtonText: 'OK',
+              footer: '<a href="#" id="openModalLink">Not Now</a>',
+              
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Handle confirm action
+                // For example, show another modal
+                Swal.fire({
+                  title: 'New Modal',
+                  text: 'This is a new modal!',
+                  icon: 'info',
+                  width: '500px',
+                  height: '500px',
+                });
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Handle cancel action
+                // For example, close the modal or perform another action
+                Swal.fire('Action Canceled', 'You chose not to proceed.', 'warning');
+              }
             });
+  
+            // Add event listener to handle click on the confirm button link
+            document.getElementById('openModalLink').addEventListener('click', () => {
+              // Handle click action, such as showing a new modal
+              Swal.fire({
+                title: 'New Modal',
+                text: 'This is a new modal!',
+                icon: 'info',
+                width: '500px',
+                height: '500px',
+              });
+            });
+  
             setIsAdminNotificationShown(true);
-            setVerificationToastShow(true);
-
           }
         })
         .catch(err => {
@@ -37,24 +65,30 @@ function LandingPageApp() {
         });
     }
   }, [isAdmin, isAdminNotificationShown]);
+  
+  
+  
 
   // useEffect(() => {
   //   if (isAdmin && !isAdminNotificationShown) {
   //     axios.post('http://localhost:3031/verify-user')
-  //     .then(res => {
-  //       console.log("Data Returned: " + res.data);
-  //       setVerificationToastShow(true);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  //     Swal.fire({
-  //       icon: 'success',
-  //       title: 'You are an admin!',
-  //       timer: 3000,
-  //       showConfirmButton: false
-  //     });
-  //     setIsAdminNotificationShown(true);
+  //       .then(res => {
+  //         console.log("Data Returned: ", res.data);
+  //         if (res.data.length > 0) {
+  //           Swal.fire({
+  //             icon: 'info',
+  //             title: 'Users to Verify',
+  //             text: 'You have pending user verifications. Please proceed to verify them.',
+              
+  //             confirmButtonText: 'ok',
+  //           });
+  //           setIsAdminNotificationShown(true);
+
+  //         }
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
   //   }
   // }, [isAdmin, isAdminNotificationShown]);
 
@@ -111,7 +145,6 @@ function LandingPageApp() {
                 MABUHAY! WELCOME TO MARIQUEUENA
             </h1>
           </div>
-          <VerificationToast show={verificationToastShow} setShow={setVerificationToastShow}/> 
         <Container className="d-flex align-items-center justify-content-center mt-5">
         <Row>
           <Col>
