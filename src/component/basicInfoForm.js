@@ -106,9 +106,13 @@ const BasicInfoForm = ({ values, file, handleInput, handleFile, errors}) => {
                     <Form.Label style={{ fontWeight: 'bold' }}>Valid ID</Form.Label>
                         <Form.Select onChange={handleInput} name="idType">
                             <option>Select ID Type: </option>
+                            {/* A01-23-456789 */}
                             <option value="DriverLicense">Driver's License</option>
+                            {/* 0123-4567890-1 */}
                             <option value="SSS">SSS</option>
+                            {/* 01-13245678-0 */}
                             <option value="PhilHealth">PhilHealth ID</option>
+                            {/* P1234567A */}
                             <option value="Passport">Passport</option>
                         </Form.Select>
                     <Form.Floating>
