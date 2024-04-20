@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import {useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../App.css';
 import CountDownTimer from './CountdownTimer';
@@ -12,7 +13,9 @@ function QueuePageApp() {
   const [lastQueue, setLastQueue] = useState(1);
   const [estimatedTime, setEstimatedTime] = useState(1);
   const [showReminder, setShowReminder] = useState(false);
-  
+  const location = useLocation();
+  const isAdmin = location.state.isAdmin;
+
   useEffect(() => {
     if (showReminder) {
       Swal.fire({
@@ -176,9 +179,12 @@ function QueuePageApp() {
                 <Button variant="success" onClick={joinWaitingLine}>
                   Join the Line
                 </Button>
-                <Button variant="primary" className="ms-3" onClick={serveNextPerson}>
-                  Serve Next
-                </Button>
+                {isAdmin ? (
+                  // Render the "Serve Next" button only if the user is not an admin
+                  <Button variant="primary" className="ms-3" onClick={serveNextPerson}>
+                    Serve Next
+                  </Button>
+                ) : null}
               </Container>
             </Col>
           </Row>
