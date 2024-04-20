@@ -4,6 +4,7 @@ import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import {useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../App.css';
+import axios from 'axios';
 import CountDownTimer from './CountdownTimer';
 
 
@@ -15,6 +16,7 @@ function QueuePageApp() {
   const [showReminder, setShowReminder] = useState(false);
   const location = useLocation();
   const isAdmin = location.state.isAdmin;
+  const userEmail = location.state.userEmail;
 
   useEffect(() => {
     if (showReminder) {
@@ -27,32 +29,75 @@ function QueuePageApp() {
       setShowReminder(false);
     }
   }, [showReminder]);
-
+  
   useEffect(() => {
+    // Fetch users who are already in the queue from your database
+    axios.get('http://localhost:3031/users?inQueue=1')
+    .then(res => {
+      // Initialize the counter for the queue
+      let newQueueCounter = lastQueue;
+
+      // Check if the response data is an array
+      if (Array.isArray(res.data)) {
+        // Iterate over each object returned by the API
+        res.data.forEach((user, index) => {
+          // Increment the queue counter for each user
+          const newPerson = (newQueueCounter++).toString();
+          // Add the new person to the queue
+          setPeopleInLine(prevPeopleInLine => [...prevPeopleInLine, newPerson]);
+          // Calculate the new estimated time
+          const newEstimatedTime = calculateEstimatedTime(newQueueCounter);
+          console.log("New Estimated Time after joining line:", newEstimatedTime);
+          setEstimatedTime(newEstimatedTime);
+        });
+        // Update the lastQueue with the new queue counter
+        setLastQueue(newQueueCounter);
+      }
+    })
+    .catch(err => {
+      console.error('Error fetching queue data:', err);
+    });
+
     joinWaitingLine();
   }, []);
 
   const calculateEstimatedTime = () => {
     const baseDuration = 3;
     const incrementPerUser = 3;
-    const numUsers = peopleInLine.length;
-  
-    if (numUsers === 0) {
-      return baseDuration; // Return base duration if there are no users in line
-    }
-  
-    return Math.max(baseDuration + numUsers * incrementPerUser, 1);
+    return Math.max(baseDuration * incrementPerUser, 1);
   };
+  
+  // const calculateEstimatedTime = () => {
+  //   const baseDuration = 3;
+  //   const incrementPerUser = 3;
+  //   const numUsers = peopleInLine.length;
+  
+  //   if (numUsers === 0) {
+  //     return baseDuration; // Return base duration if there are no users in line
+  //   }
+  
+  //   return Math.max(baseDuration + numUsers * incrementPerUser, 1);
+  // };
 
   const joinWaitingLine = () => {
-    const newPerson = lastQueue.toString();
-    setPeopleInLine([...peopleInLine, newPerson]);
-    setLastQueue(lastQueue + 1);
-  
+    axios.post('http://localhost:3031/addQueue', { email: userEmail })
+    .then(res => {
+        if(res.data.message === "Success") {
+          const newPerson = lastQueue.toString();
+          setPeopleInLine([...peopleInLine, newPerson]);
+          setLastQueue(lastQueue + 1);
+
+        } else if (res.data.message === "Already in Queue"){
+          Swal.fire({
+            title: 'Already in Queue',
+            icon: 'warning',
+          });
+        }
+    })
+
     const newEstimatedTime = calculateEstimatedTime();
     console.log("New Estimated Time after joining line:", newEstimatedTime);
     setEstimatedTime(newEstimatedTime);
-    console.log("Current Estimated Time:", estimatedTime); // Add this line
     if (newEstimatedTime !== null && newEstimatedTime <= 3) {
       setShowReminder(true);
       console.log("Reminder will be shown.");
@@ -83,6 +128,7 @@ function QueuePageApp() {
       if (newEstimatedTime !== null && newEstimatedTime <= 4) {
         setShowReminder(true);
       }
+      axios.get('http://localhost:3031/removeQueue')
     }
   };
 
@@ -132,7 +178,7 @@ function QueuePageApp() {
                 boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
               }}>
                 <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                  <h1>Next in Queue</h1>
+                  <h1>Now Serving: </h1>
                   <div className="mt-2 me-4">{getNextInQueue()}</div>
                 </Card.Body>
               </Card>
