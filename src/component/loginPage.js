@@ -95,10 +95,11 @@ function LoginPage({show, handleClose}) {
                   <InputGroup>
                     <Form.Control
                       type={showPassword ? 'text' : 'password'}
+                      id = 'password'
                       placeholder='Enter Password'
                       name='password'
                       onChange={handleInput} />
-                    <Button variant="outline-secondary" onClick={togglePasswordVisibility}>
+                    <Button variant="outline-secondary" onClick={() => togglePasswordVisibility('password')}>
                       {showPassword ? <BsEyeSlash /> : <BsEye />}
                     </Button>
                   </InputGroup>

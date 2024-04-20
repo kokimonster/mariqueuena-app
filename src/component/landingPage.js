@@ -1,32 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import '../App.css';
 
 
 function LandingPageApp() {
+  const location = useLocation();
+  const isAdmin = location.state.isAdmin;
   const navigate = useNavigate();
+  const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
 
+  useEffect(() => {
+    if (isAdmin && !isAdminNotificationShown) {
+      Swal.fire({
+        icon: 'success',
+        title: 'You are an admin!',
+        timer: 3000,
+        showConfirmButton: false
+      });
+      setIsAdminNotificationShown(true);
+    }
+  }, [isAdmin, isAdminNotificationShown]);
+
+  
   const handleCardClick = (action) => {
     switch(action) {
       case 'joinQueue':
-        navigate('/queuePage');
+        navigate('/queuePage', { state: { isAdmin } });
         break;
       case 'latestNews':
         //handle news action
         break;
       case 'candidatesProfile':
-        navigate('/candidatesProfile');
+        navigate('/candidatesProfile', { state: { isAdmin } });
         break;
       case 'tipsAndTricks':
-        navigate('/tipsAndTricks')
+        navigate('/tipsAndTricks', { state: { isAdmin } });
         break;
         default:
           break;
     }
   };
-
   return(
     <div className="landingPageStyle">
       <div className="gradient-bg-landing">
