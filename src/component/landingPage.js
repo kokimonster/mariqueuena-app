@@ -10,6 +10,7 @@ import axios from 'axios';
 function LandingPageApp() {
   const location = useLocation();
   const isAdmin = location.state.isAdmin;
+  const userEmail = location.state.userEmail;
   const navigate = useNavigate();
   const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
 
@@ -96,7 +97,9 @@ function LandingPageApp() {
   const handleCardClick = (action) => {
     switch(action) {
       case 'joinQueue':
-        navigate('/queuePage', { state: { isAdmin } });
+        console.log("isAdmin: " + isAdmin);
+        console.log("userEmail: " + userEmail);
+        navigate('/queuePage', { state: { isAdmin, userEmail } });
         break;
       case 'latestNews':
         //handle news action
