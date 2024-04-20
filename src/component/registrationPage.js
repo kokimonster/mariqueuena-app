@@ -57,6 +57,8 @@ function RegistrationPage({ show, handleClose }) {
         }
         if (!values.mNumber) {
             errors.mNumber = "Missing Mobile Number";
+        } else if (values.mNumber.length > 11){
+            errors.mNumber = "Mobile number must be less than 12 digits!"
         }
         if (!values.email) {
             errors.email = "Missing Email";
@@ -109,6 +111,12 @@ function RegistrationPage({ show, handleClose }) {
                 icon: 'error',
                 title: 'Please fill up the missing field!',
             });
+        } else if(values.mNumber.length > 11) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Mobile Number!',
+                text: 'Mobile number must be less than 12 digits!',
+            });
         } else {
             // No validation errors, proceed to the next page
             if (currentPage === 1) {
@@ -121,10 +129,32 @@ function RegistrationPage({ show, handleClose }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const { name, value} = event.target;
         const confirmPasswordValue = values.confirmPassword;
         setConfirmPassword(confirmPasswordValue);
         const passwordValidation = validatePassword(values.password) ;
         setErrors(passwordValidation);
+
+        let formattedValue = value;
+
+        if(name === "dateOfBirth") {
+            // Parse the received value as a Date object
+            const dateObject = new Date(value);
+            // Check if the dateObject is a valid Date
+            if (!isNaN(dateObject.getTime())) {
+                // Format the date as YYYY/MM/DD
+                const year = dateObject.getFullYear();
+                const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+                const day = String(dateObject.getDate()).padStart(2, '0');
+                formattedValue = `${year}/${month}/${day}`;
+            }
+    
+        }
+
+        setValues({
+            ...values,
+            [name]: formattedValue,
+        });
 
         // Check if passwords match
         if (values.password && confirmPasswordValue !== values.password) {
@@ -181,6 +211,7 @@ function RegistrationPage({ show, handleClose }) {
                                     text: 'You many now login',
                                 });
                                 handleClose(); // Close modal or perform other actions
+                                resetState();
                             }
                         })
                         .catch(uploadError => {
