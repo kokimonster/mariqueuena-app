@@ -51,7 +51,8 @@ function LoginPage({show, handleClose}) {
             .then(res => {
               console.log(res);
               const isAdmin = res.data.isAdmin;
-              navigate('/landingPage', { state: { isAdmin } }); // Pass isAdmin status to landing page
+              const userEmail = values.email;
+              navigate('/landingPage', { state: { isAdmin, userEmail } }); // Pass isAdmin status to landing page
             })
             .catch(error => {
               Swal.fire({
