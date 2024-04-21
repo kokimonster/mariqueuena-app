@@ -12,6 +12,7 @@ function QueuePageApp() {
   const [peopleInLine, setPeopleInLine] = useState([]);
   const [servedPerson, setServedPerson] = useState(null);
   const [lastQueue, setLastQueue] = useState(1);
+  const [userQueueNumber, setUserQueueNumber] = useState({});
   const [estimatedTime, setEstimatedTime] = useState(3); // Initialize estimatedTime as an integer
   const [showReminder, setShowReminder] = useState(false);
   const location = useLocation();
@@ -29,37 +30,90 @@ function QueuePageApp() {
       setShowReminder(false);
     }
   }, [showReminder]);
-  
+
+  const resetState = () => { 
+    setPeopleInLine([]);
+    setServedPerson(null);
+  };
+
   useEffect(() => {
-    // Fetch users who are already in the queue from your database
-    axios.get('http://localhost:3031/users?inQueue=1')
-    .then(res => {
-      // Initialize the counter for the queue
-      let newQueueCounter = lastQueue;
-
-      // Check if the response data is an array
-      if (Array.isArray(res.data)) {
-        // Iterate over each object returned by the API
-        res.data.forEach((user, index) => {
-          // Increment the queue counter for each user
-          const newPerson = (newQueueCounter++).toString();
-          // Add the new person to the queue
-          setPeopleInLine(prevPeopleInLine => [...prevPeopleInLine, newPerson]);
-          // Calculate the new estimated time
-          const newEstimatedTime = calculateEstimatedTime(newQueueCounter);
-          console.log("New Estimated Time after joining line:", newEstimatedTime);
-          setEstimatedTime(newEstimatedTime);
-        });
-        // Update the lastQueue with the new queue counter
-        setLastQueue(newQueueCounter);
+    const joinWaitingLine = async () => {
+      try {
+        // Fetch users who are already in the queue from your database
+        const queueResponse = await axios.get('http://localhost:3031/getInQueue?inQueue=1');
+        
+        // Check if the response data is an array
+        if (Array.isArray(queueResponse.data)) {
+          // Iterate over each object returned by the API
+          queueResponse.data.forEach((user, index) => {
+            // Update the lastQueue with the current index plus one
+            const newPerson = lastQueue.toString();
+            setPeopleInLine(queueResponse.data.map((user, index) => (index + 1).toString()));
+            // setPeopleInLine([...peopleInLine, newPerson]);
+            setLastQueue(index + 1);
+          });
+        }
+        
+        let queueNumberPass = lastQueue;
+        console.log("Queue Number ni User: " + queueNumberPass);
+  
+        // Make the post request
+        const addQueueResponse = await axios.post('http://localhost:3031/addQueue', { email: userEmail, number: queueNumberPass });
+  
+        if (addQueueResponse.data.message === "Success") {
+          setUserQueueNumber(addQueueResponse.data.number);
+  
+          // Handle any additional logic here if needed
+        } else if (addQueueResponse.data.message === "Already in Queue") {
+          Swal.fire({
+            title: 'Already in Queue',
+            icon: 'warning',
+          });
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    })
-    .catch(err => {
-      console.error('Error fetching queue data:', err);
-    });
 
+      const newEstimatedTime = calculateEstimatedTime();
+      console.log("New Estimated Time after joining line:", newEstimatedTime);
+      setEstimatedTime(newEstimatedTime);
+      if (newEstimatedTime !== null && newEstimatedTime <= 3) {
+        setShowReminder(true);
+        console.log("Reminder will be shown.");
+      } else {
+        console.log("Reminder will NOT be shown.");
+      }
+
+    };
+    // Call the function to join waiting line when the component mounts
     joinWaitingLine();
-  }, []);
+    
+  }, [showReminder]); 
+  
+  const getNextInQueue = () => {
+    if (peopleInLine.length > 0) {
+      return peopleInLine[0];
+    } else {
+      return '-';
+    }
+  };
+
+  const serveNextPerson = () => {
+    console.log("Number of people in line:", peopleInLine.length);
+
+    if (peopleInLine.length > 0) {
+      const served = peopleInLine[0];
+      setServedPerson(served);
+      setPeopleInLine(peopleInLine.slice(1));
+  
+      // axios.get('http://localhost:3031/removeQueue')
+    }
+  };
+
+  const handleTimeUp = () => {
+    console.log("Time's up!");
+  };
+  
 
   // const calculateEstimatedTime = () => {
   //   const baseDuration = 3;
@@ -79,63 +133,52 @@ function QueuePageApp() {
     return Math.max(baseDuration + numUsers * incrementPerUser, 1);
   };
 
-  const joinWaitingLine = () => {
-    axios.post('http://localhost:3031/addQueue', { email: userEmail })
-    .then(res => {
-        if(res.data.message === "Success") {
-          const newPerson = lastQueue.toString();
-          setPeopleInLine([...peopleInLine, newPerson]);
-          setLastQueue(lastQueue + 1);
+  // const joinWaitingLine = () => {
+  //   // Fetch users who are already in the queue from your database
+  //   axios.get('http://localhost:3031/getInQueue?inQueue=1')
+  //   .then(res => {
+  //     // Check if the response data is an array
+  //     if (Array.isArray(res.data)) {
+  //       // Iterate over each object returned by the API
+  //       res.data.forEach((user, index) => {
+  //         // Update the lastQueue with the current index plus one
+  //         const newPerson = lastQueue.toString();
+  //         setPeopleInLine([...peopleInLine, newPerson]);
+  //         setLastQueue(index + 1);
+  //       });
+  //     }
+  //     let queueNumberPass = lastQueue;
+  //     console.log("Queue Number ni User: " + queueNumberPass);
 
-        } else if (res.data.message === "Already in Queue"){
-          Swal.fire({
-            title: 'Already in Queue',
-            icon: 'warning',
-          });
-        }
-    })
-
-    const newEstimatedTime = calculateEstimatedTime();
-    console.log("New Estimated Time after joining line:", newEstimatedTime);
-    setEstimatedTime(newEstimatedTime);
-    if (newEstimatedTime !== null && newEstimatedTime <= 3) {
-      setShowReminder(true);
-      console.log("Reminder will be shown.");
-    } else {
-      console.log("Reminder will NOT be shown.");
-    }
-  };
+  //     axios.post('http://localhost:3031/addQueue', { email: userEmail, number: queueNumberPass})
+  //     .then(res => {
+  //         if(res.data.message === "Success") {
+  //           setUserQueueNumber(res.data.number);
   
-  const getNextInQueue = () => {
-    if (peopleInLine.length > 0) {
-      return peopleInLine[0];
-    } else {
-      return '-';
-    }
-  };
+  //         } else if (res.data.message === "Already in Queue"){
+  //           Swal.fire({
+  //             title: 'Already in Queue',
+  //             icon: 'warning',
+  //           });
+  //         }
+  //     })
 
-  const serveNextPerson = () => {
-    if (peopleInLine.length > 0) {
-      const served = peopleInLine[0];
-      setServedPerson(served);
-      setPeopleInLine(peopleInLine.slice(1));
+  //   })
+  //   .catch(err => {
+  //     console.error('Error fetching queue data:', err);
+  //   });
+
+  //   const newEstimatedTime = calculateEstimatedTime();
+  //   console.log("New Estimated Time after joining line:", newEstimatedTime);
+  //   setEstimatedTime(newEstimatedTime);
+  //   if (newEstimatedTime !== null && newEstimatedTime <= 3) {
+  //     setShowReminder(true);
+  //     console.log("Reminder will be shown.");
+  //   } else {
+  //     console.log("Reminder will NOT be shown.");
+  //   }
+  // };
   
-      const newEstimatedTime = Math.max(estimatedTime - 3, 0); // Decrease by 3 minutes
-      
-    console.log("New Estimated Time after serving next person:", newEstimatedTime);
-      setEstimatedTime(newEstimatedTime);
-
-      if (newEstimatedTime !== null && newEstimatedTime <= 4) {
-        setShowReminder(true);
-      }
-      axios.get('http://localhost:3031/removeQueue')
-    }
-  };
-
-  const handleTimeUp = () => {
-    console.log("Time's up!");
-  };
-
   return (  
     <div className="landingPageStyle">
       <div className="gradient-bg-landing">
@@ -183,41 +226,46 @@ function QueuePageApp() {
                 </Card.Body>
               </Card>
             
-              <Card className="mt-2 mb-2 " style={{ 
-                backgroundColor: 'rgba(255, 255, 255, 0.57)', 
-                color: '#000000', 
-                borderRadius: '15px', 
-                boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                padding: '30px'
-              }}>
-                <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
-                  <h1>Your Queue Number</h1>
-                  <div className="mt-2 me-4">{lastQueue - 1}</div>
-                </Card.Body>
-              </Card>
+              {!isAdmin && (
+                <div>
+                  <Card className="mt-2 mb-2 " style={{ 
+                    backgroundColor: 'rgba(255, 255, 255, 0.57)', 
+                    color: '#000000', 
+                    borderRadius: '15px', 
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                    padding: '30px'
+                  }}>
+                    <Card.Body className='text-center' style={{ fontSize: '4em', fontWeight: 'bold', marginBottom: '20px' }}>
+                      <h1>Your Queue Number</h1>
+                      <div className="mt-2 me-4">{lastQueue}</div>
+                    </Card.Body>
+                  </Card>
 
-              <Card className="mt-4 mb-4" style={{ 
-                backgroundColor: 'rgba(255, 215, 0, 0.57)', 
-                color: '#000000', 
-                borderRadius: '15px', 
-                boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
-              }}>
-                <Card.Body className='text-center'>
-                  <h2>From This Point:</h2>
-                  <CountDownTimer peopleInLine={peopleInLine.length} estimatedTime={estimatedTime} />
-                </Card.Body>
-              </Card>
+                  <Card className="mt-4 mb-4" style={{ 
+                    backgroundColor: 'rgba(255, 215, 0, 0.57)', 
+                    color: '#000000', 
+                    borderRadius: '15px', 
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)' 
+                  }}>
+                    <Card.Body className='text-center'>
+                      <h2>From This Point:</h2>
+                      <CountDownTimer peopleInLine={peopleInLine.length} estimatedTime={estimatedTime} />
+                    </Card.Body>
+                  </Card>
+                </div>
+              )}
 
               <Container className="p-2 pb-0 d-flex justify-content-center">
-                <Button variant="success" onClick={joinWaitingLine}>
-                  Join the Line
-                </Button>
-                {isAdmin ? (
-                  // Render the "Serve Next" button only if the user is not an admin
-                  <Button variant="primary" className="ms-3" onClick={serveNextPerson}>
-                    Serve Next
-                  </Button>
-                ) : null}
+              {isAdmin && (
+                  <div>
+                    <Button variant="primary" onClick={() => resetState()}>
+                      Reset Queue
+                    </Button>
+                    <Button variant="primary" className="ms-3" onClick={() => serveNextPerson()}>
+                      Serve Next
+                    </Button>
+                  </div>
+                )}
               </Container>
             </Col>
           </Row>
