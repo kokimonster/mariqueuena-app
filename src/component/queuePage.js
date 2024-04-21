@@ -61,23 +61,23 @@ function QueuePageApp() {
     joinWaitingLine();
   }, []);
 
-  const calculateEstimatedTime = () => {
-    const baseDuration = 3;
-    const incrementPerUser = 3;
-    return Math.max(baseDuration * incrementPerUser, 1);
-  };
-  
   // const calculateEstimatedTime = () => {
   //   const baseDuration = 3;
   //   const incrementPerUser = 3;
-  //   const numUsers = peopleInLine.length;
-  
-  //   if (numUsers === 0) {
-  //     return baseDuration; // Return base duration if there are no users in line
-  //   }
-  
-  //   return Math.max(baseDuration + numUsers * incrementPerUser, 1);
+  //   return Math.max(baseDuration * incrementPerUser, 1);
   // };
+  
+  const calculateEstimatedTime = () => {
+    const baseDuration = 3;
+    const incrementPerUser = 3;
+    const numUsers = peopleInLine.length;
+  
+    if (numUsers === 0) {
+      return baseDuration; // Return base duration if there are no users in line
+    }
+  
+    return Math.max(baseDuration + numUsers * incrementPerUser, 1);
+  };
 
   const joinWaitingLine = () => {
     axios.post('http://localhost:3031/addQueue', { email: userEmail })
