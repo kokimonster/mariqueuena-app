@@ -14,12 +14,78 @@ function LandingPageApp() {
   const [isAdminNotificationShown, setIsAdminNotificationShown] = useState(false);
   const [usersToVerify, setUsersToVerify] = useState([]);
 
+  const updateUsersToVerify = (data) => {
+    setUsersToVerify(data);
+  };
+
+  useEffect(() => {
+    console.log("Users to Verify: ", usersToVerify);
+    // Map over usersToVerify directly and create table rows
+    const tableBodyContent = usersToVerify.map((user, index) => (
+      `<tr key=${index}>
+        <td>${user.email}</td>
+        <td>
+          <button onClick="handleDownload('${user.id}')">Download ID</button>
+        </td>
+      </tr>`
+    )).join('');
+    
+    Swal.fire({
+      title: 'Pending User Verifications',
+      html: `
+        <div style="max-height: 300px; overflow-y: auto;">
+          <table style="margin: 0 auto;">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Download ID</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              ${tableBodyContent}
+            </tbody>
+          </table>
+        </div>
+      `,
+      icon: 'info',
+      width: '100%',
+      showCloseButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Fetch ID information for each user and dynamically populate the table rows
+        const userTableBody = document.getElementById('userTableBody');
+
+        result.data.forEach(user => {
+          axios.post('http://localhost:3031/get-id', { email: user.email })
+            .then(idRes => {
+              const idDownloadLink = idRes.data.downloadLink;
+              const row = `
+                <tr>
+                  <td>${user.lname}</td>
+                  <td>${user.email}</td>
+                  <td>
+                    <a href="${idDownloadLink}" download>
+                      <button>Download ID</button>
+                    </a>
+                  </td>
+                </tr>
+              `;
+              userTableBody.innerHTML += row;
+            })
+            .catch(err => {
+              console.error('Error fetching ID information:', err);
+            });
+        });
+      }
+    });
+  }, [usersToVerify]);
+
   useEffect(() => {
     if (isAdmin && !isAdminNotificationShown) {
       axios.post('http://localhost:3031/verify-user')
         .then(res => {
-          if (res.data.length > 0) {
-            setUsersToVerify(res.data);
+          if (res.data && res.data.length > 0) {
+            updateUsersToVerify(res.data);
             Swal.fire({
               title: 'Users to Verify',
               icon: 'info',
@@ -28,80 +94,18 @@ function LandingPageApp() {
               `,
               showCancelButton: true,
               confirmButtonText: 'OK',
-              footer: '<a href="#" id="openModalLink">Not Now</a>'
             }).then((result) => {
               if (result.isConfirmed) {
                 // Handle confirm action
                 // For example, show another modal
-                Swal.fire({
-                  title: 'Pending User Verifications',
-                  html: `
-                    <div style="max-height: 300px; overflow-y: auto;">
-                      <table style="margin: 0 auto;">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Download ID</th>
-                          </tr>
-                        </thead>
-                        <tbody id="userTableBody">
-                        {tableBodyContent.map((user, index) => (
-                          <tr key={index}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
-                            <td>
-                            <button onClick={() => handleDownload(user.id)}>Download ID</button>
-                            </td>
-                          </tr>
-                        ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  `,
-                  icon: 'info',
-                  width: '80%',
-                  showCloseButton: true,
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    // Fetch ID information for each user and dynamically populate the table rows
-                    const userTableBody = document.getElementById('userTableBody');
-                
-                    res.data.forEach(user => {
-                      axios.post('http://localhost:3031/get-id', { email: user.email })
-                        .then(idRes => {
-                          const idDownloadLink = idRes.data.downloadLink;
-                          const row = `
-                            <tr>
-                              <td>${user.name}</td>
-                              <td>${user.email}</td>
-                              <td>${user.role}</td>
-                              <td>
-                                <a href="${idDownloadLink}" download>
-                                  <button>Download ID</button>
-                                </a>
-                              </td>
-                            </tr>
-                          `;
-                          userTableBody.innerHTML += row;
-                        })
-                        .catch(err => {
-                          console.error('Error fetching ID information:', err);
-                        });
-                    });
-                  } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    // Handle cancel action
-                    // For example, close the modal or perform another action
-                    Swal.fire('Action Canceled', 'You chose not to proceed.', 'warning');
-                  }
-                });
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Handle cancel action
+                // For example, close the modal or perform another action
+                Swal.fire('Action Canceled', 'You chose not to proceed.', 'warning');
               }
             });
-    
-            setIsAdminNotificationShown(true);
           }
+          setIsAdminNotificationShown(true);
         })
         .catch(err => {
           console.error(err);
